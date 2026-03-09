@@ -597,7 +597,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       <div class="product-info">
         <div class="pi-cat">Banco · Console</div>
         <div class="pi-name">Sideboard M</div>
-        <div class="pi-sku">BANCO-M · 120×40×45 cm · Azulejo 4,7×4,7</div>
+        <div class="pi-sku">BANCO · 90×40×40 cm · Azulejo 4,7×4,7</div>
         <div class="product-colors">
           <div class="pcolor" style="background:#B9D0D4;" title="Sky"></div>
           <div class="pcolor" style="background:#C8B8D8;" title="Lilás"></div>
@@ -1123,7 +1123,7 @@ let state = {
 const prices = {
   CUBO:   {P:590,  M:890,  G:1350, XG:1890},
   MESA:   {P:750,  M:1290, G:2100, XG:2900},
-  BANCO:  {P:1200, M:2100, G:3200, XG:4500},
+  BANCO:  {P:2100, M:2100, G:2100, XG:2100},
   HOLDER: {P:290,  M:490,  G:790,  XG:1100},
   'MÓDULO': {P:2900, M:2900, G:2900, XG:2900},
   SET:    {P:3900, M:3900, G:3900, XG:3900},
@@ -1131,7 +1131,7 @@ const prices = {
 const dims = {
   CUBO:   {P:'~25×25×25 cm',  M:'~40×40×40 cm',   G:'~55×55×55 cm',   XG:'~70×70×70 cm'},
   MESA:   {P:'~60×30×40 cm',  M:'~90×40×45 cm',   G:'~120×50×50 cm',  XG:'~150×60×55 cm'},
-  BANCO:  {P:'~80×35×40 cm',  M:'~120×40×45 cm',  G:'~160×45×50 cm',  XG:'~200×50×55 cm'},
+  BANCO:  {P:'90×40×40 cm',  M:'90×40×40 cm',  G:'90×40×40 cm',  XG:'90×40×40 cm'},
   HOLDER: {P:'~10×10×20 cm',  M:'~15×15×28 cm',   G:'~20×20×36 cm',   XG:'~25×25×44 cm'},
   'MÓDULO':{P:'100×35×80 cm', M:'100×35×80 cm',   G:'100×35×80 cm',   XG:'100×35×80 cm'},
   SET:    {P:'120×60×80 cm',  M:'120×60×80 cm',    G:'120×60×80 cm',   XG:'120×60×80 cm'},
@@ -1179,7 +1179,7 @@ const ISO = {
   // Tile grid on an isometric face. axis: 'front'(x,z), 'side'(y,z), 'top'(x,y)
   tiledFace(origin, w, h, cols, rows, axis, tc, gc, opacity) {
     let svg = '';
-    const gap = w * 0.015;
+    const gap = 1.2;
     const tw = (w - gap*(cols+1)) / cols;
     const th = (h - gap*(rows+1)) / rows;
     // Draw grout bg
@@ -1228,14 +1228,17 @@ const ISO = {
 // All products rendered in isometric projection with proper proportions
 // Viewbox is set so center origin is at (160,140) via a translate in updatePreview
 
-function drawCube(tc, gc) {
-  // Cube: 40×40×40 cm → s=100 units
-  const s = 100;
-  const bottom = ISO.tiledFace([0,0,0], s, s, 5, 5, 'top',   tc, gc, 1);
-  const left   = ISO.tiledFace([0,0,s], s, s, 5, 5, 'side',  tc, gc, 1);
-  const front  = ISO.tiledFace([0,0,s], s, s, 5, 5, 'front', tc, gc, 1);
-  const right  = ISO.tiledFace([s,0,s], s, s, 5, 5, 'side',  tc, gc, 1);
-  const top    = ISO.tiledFace([0,0,s], s, s, 5, 5, 'top',   tc, gc, 1);
+function drawCube(tc, gc, size) {
+  // Cube sizes in cm: P=25, M=40, G=55, XG=70. Tile = 5cm → tiles per side = cm/5
+  const cmMap = {P:25, M:40, G:55, XG:70};
+  const cm = cmMap[size] || 40;
+  const tiles = Math.round(cm / 5);
+  const s = tiles * 12.5; // each tile = 12.5 units so rendering scales with tile count
+  const bottom = ISO.tiledFace([0,0,0], s, s, tiles, tiles, 'top',   tc, gc, 1);
+  const left   = ISO.tiledFace([0,0,s], s, s, tiles, tiles, 'side',  tc, gc, 1);
+  const front  = ISO.tiledFace([0,0,s], s, s, tiles, tiles, 'front', tc, gc, 1);
+  const right  = ISO.tiledFace([s,0,s], s, s, tiles, tiles, 'side',  tc, gc, 1);
+  const top    = ISO.tiledFace([0,0,s], s, s, tiles, tiles, 'top',   tc, gc, 1);
   return `<g>${bottom}${left}${front}${right}${top}</g>`;
 }
 
@@ -1262,19 +1265,40 @@ function drawMesa(tc, gc) {
 }
 
 function drawBanco(tc, gc) {
-  // Banco: 120×40×45 cm — bench with thick tiled seat, 2 side legs
-  const w=160, d=50, seatH=18, totalH=60, legH=totalH-seatH;
-  const legInset = 4;
-  const legThick = 10;
-  const lL  = ISO.tiledFace([legInset, legInset, legH], legThick, legH, 1, 3, 'front', tc, gc, 1);
-  const lLs = ISO.tiledFace([legInset, legInset, legH], d-legInset*2, legH, 3, 3, 'side', tc, gc, 1);
-  const lR  = ISO.tiledFace([w-legInset-legThick, legInset, legH], legThick, legH, 1, 3, 'front', tc, gc, 1);
-  const lRs = ISO.tiledFace([w-legInset, legInset, legH], d-legInset*2, legH, 3, 3, 'side', tc, gc, 1);
-  const sLeft  = ISO.tiledFace([0,0,totalH], d, seatH, 3, 1, 'side', tc, gc, 1);
-  const sFront = ISO.tiledFace([0,0,totalH], w, seatH, 10, 1, 'front', tc, gc, 1);
-  const sRight = ISO.tiledFace([w,0,totalH], d, seatH, 3, 1, 'side', tc, gc, 1);
-  const sTop   = ISO.tiledFace([0,0,totalH], w, d, 10, 3, 'top', tc, gc, 1);
-  return `<g>${lL}${lLs}${lR}${lRs}${sLeft}${sFront}${sRight}${sTop}</g>`;
+  // Banco: 90×40×40 cm — inverted U shape
+  // 5cm tiles: 18w × 8d × 8h total, panels = 2 tiles thick × 8 tiles tall
+  const t = 7;
+  const tw = 18, td = 8, th = 8, tp = 2;
+  const w = tw * t, d = td * t, h = th * t, pw = tp * t;
+  // Helper: edge line between two 3D points
+  function edge(p1, p2) {
+    const a = ISO.to2D(p1[0],p1[1],p1[2]), b = ISO.to2D(p2[0],p2[1],p2[2]);
+    return `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="${gc}" stroke-width="1.2"/>`;
+  }
+  // Back connecting faces at y=d (after mirror: appears on RIGHT side)
+  const lpBack = ISO.tiledFace([0,d,h], pw, h, tp, th, 'front', tc, gc, 1);
+  const rpBack = ISO.tiledFace([w-pw,d,h], pw, h, tp, th, 'front', tc, gc, 1);
+  const slabB  = ISO.tiledFace([0,d,h], w, pw, tw, tp, 'front', tc, gc, 1);
+  // LEFT PANEL (2 wide × 8 deep × 8 tall)
+  const lpOuter = ISO.tiledFace([0,0,h], d, h, td, th, 'side', tc, gc, 1);
+  const lpInner = ISO.tiledFace([pw,0,h], d, h, td, th, 'side', tc, gc, 1);
+  // RIGHT PANEL (2 wide × 8 deep × 8 tall)
+  const rpInner = ISO.tiledFace([w-pw,0,h], d, h, td, th, 'side', tc, gc, 1);
+  const rpOuter = ISO.tiledFace([w,0,h], d, h, td, th, 'side', tc, gc, 1);
+  // Front connecting faces at y=0 (after mirror: appears on LEFT/prominent side)
+  const lpFront = ISO.tiledFace([0,0,h], pw, h, tp, th, 'front', tc, gc, 1);
+  const rpFront = ISO.tiledFace([w-pw,0,h], pw, h, tp, th, 'front', tc, gc, 1);
+  // TOP SLAB (18 wide × 8 deep × 2 thick)
+  const slabL   = ISO.tiledFace([0,0,h], d, pw, td, tp, 'side', tc, gc, 1);
+  const slabF   = ISO.tiledFace([0,0,h], w, pw, tw, tp, 'front', tc, gc, 1);
+  const slabR   = ISO.tiledFace([w,0,h], d, pw, td, tp, 'side', tc, gc, 1);
+  const slabTop = ISO.tiledFace([0,0,h], w, d, tw, td, 'top', tc, gc, 1);
+  // Edge outlines at y=0 (front — prominent after mirror)
+  const edges =
+    edge([0,0,h],[0,0,0]) + edge([pw,0,h],[pw,0,0]) +
+    edge([w-pw,0,h],[w-pw,0,0]) + edge([w,0,h],[w,0,0]) +
+    edge([0,0,0],[pw,0,0]) + edge([w-pw,0,0],[w,0,0]);
+  return `<g>${lpBack}${rpBack}${slabB}${lpInner}${rpInner}${lpOuter}${lpFront}${rpOuter}${rpFront}${slabL}${slabF}${slabR}${slabTop}${edges}</g>`;
 }
 
 function drawHolder(tc, gc) {
@@ -1307,19 +1331,23 @@ function drawModulo(tc, gc) {
 
 function drawSet(tc, gc) {
   // Bureau / Desk: 120×60×80 cm — U-shaped desk
-  const w=132, d=66, h=88, panelW=11;
+  // 5cm per tile: 24 wide × 12 deep × 16 tall, panel = 1 tile thick
+  const t = 7; // units per tile
+  const tw = 24, td = 12, th = 16, tp = 1; // tile counts: width, depth, height, panel thickness
+  const w = tw * t, d = td * t, h = th * t, panelW = tp * t;
+  const legH = (th - tp) * t; // panel height in units (15 tiles)
   // Left side panel
-  const lpL = ISO.tiledFace([0,0,h-panelW], d, h-panelW, 4, 6, 'side', tc, gc, 1);
-  const lpF = ISO.tiledFace([0,0,h-panelW], panelW, h-panelW, 1, 6, 'front', tc, gc, 1);
-  const lpR = ISO.tiledFace([panelW,0,h-panelW], d, h-panelW, 4, 6, 'side', tc, gc, 1);
+  const lpL = ISO.tiledFace([0,0,h-panelW], d, legH, td, th-tp, 'side', tc, gc, 1);
+  const lpF = ISO.tiledFace([0,0,h-panelW], panelW, legH, tp, th-tp, 'front', tc, gc, 1);
+  const lpR = ISO.tiledFace([panelW,0,h-panelW], d, legH, td, th-tp, 'side', tc, gc, 1);
   // Right side panel
-  const rpF = ISO.tiledFace([w-panelW,0,h-panelW], panelW, h-panelW, 1, 6, 'front', tc, gc, 1);
-  const rpR = ISO.tiledFace([w,0,h-panelW], d, h-panelW, 4, 6, 'side', tc, gc, 1);
-  // Top slab
-  const topL = ISO.tiledFace([0,0,h], d, panelW, 4, 1, 'side', tc, gc, 1);
-  const topF = ISO.tiledFace([0,0,h], w, panelW, 10, 1, 'front', tc, gc, 1);
-  const topR = ISO.tiledFace([w,0,h], d, panelW, 4, 1, 'side', tc, gc, 1);
-  const topT = ISO.tiledFace([0,0,h], w, d, 10, 4, 'top', tc, gc, 1);
+  const rpF = ISO.tiledFace([w-panelW,0,h-panelW], panelW, legH, tp, th-tp, 'front', tc, gc, 1);
+  const rpR = ISO.tiledFace([w,0,h-panelW], d, legH, td, th-tp, 'side', tc, gc, 1);
+  // Top slab (1 tile thick)
+  const topL = ISO.tiledFace([0,0,h], d, panelW, td, tp, 'side', tc, gc, 1);
+  const topF = ISO.tiledFace([0,0,h], w, panelW, tw, tp, 'front', tc, gc, 1);
+  const topR = ISO.tiledFace([w,0,h], d, panelW, td, tp, 'side', tc, gc, 1);
+  const topT = ISO.tiledFace([0,0,h], w, d, tw, td, 'top', tc, gc, 1);
   return `<g>${lpL}${lpF}${lpR}${rpF}${rpR}${topL}${topF}${topR}${topT}</g>`;
 }
 
@@ -1330,22 +1358,29 @@ function updatePreview() {
   if(!wrap) return;
   let inner = '';
   // ViewBox offsets per product to center the isometric rendering (includes all faces)
+  // Cube viewBox is dynamic based on size
+  const cubeCmMap = {P:25, M:40, G:55, XG:70};
+  const cubeCm = cubeCmMap[state.size] || 40;
+  const cubeTiles = Math.round(cubeCm / 5);
+  const cubeS = cubeTiles * 12.5;
+  const cubeHalfW = cubeS * 0.866 + 5;
+  const cubeH = cubeS * 1.5 + cubeS + 10;
   const vb = {
-    'CUBO':  {x:-102, y:-115, w:204, h:230},
+    'CUBO':  {x:-cubeHalfW, y:-(cubeS + 5), w:cubeHalfW * 2, h:cubeH},
     'MESA':  {x:-80,  y:-65,  w:225, h:193},
-    'BANCO': {x:-59,  y:-75,  w:212, h:195},
+    'BANCO': {x:-114, y:-61,  w:168, h:157},
     'HOLDER':{x:-63,  y:-135, w:126, h:205},
     'MÓDULO':{x:-55,  y:-119, w:183, h:222},
-    'SET':   {x:-73,  y:-103, w:202, h:217},
+    'SET':   {x:-78,  y:-117, w:229, h:248},
   };
   switch(state.type) {
-    case 'CUBO':    inner = drawCube(tc, gc);   break;
+    case 'CUBO':    inner = drawCube(tc, gc, state.size);   break;
     case 'MESA':    inner = drawMesa(tc, gc);   break;
-    case 'BANCO':   inner = drawBanco(tc, gc);  break;
+    case 'BANCO':   inner = `<g transform="scale(-1,1)">${drawBanco(tc, gc)}</g>`;  break;
     case 'HOLDER':  inner = drawHolder(tc, gc); break;
     case 'MÓDULO':  inner = drawModulo(tc, gc); break;
     case 'SET':     inner = drawSet(tc, gc);    break;
-    default:        inner = drawCube(tc, gc);
+    default:        inner = drawCube(tc, gc, state.size);
   }
   const v = vb[state.type] || vb['CUBO'];
   const pad = 15;
