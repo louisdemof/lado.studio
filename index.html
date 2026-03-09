@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lado Studio — Objetos com presença.</title>
-<meta name="description" content="Lado Studio — objetos sob encomenda revestidos em azulejo artesanal. Cubos, mesas, bancos e módulos feitos no Rio de Janeiro.">
+<meta name="description" content="Lado Studio — objetos sob encomenda revestidos em azulejo artesanal. Cubos, mesas, bancos e buffets feitos no Rio de Janeiro.">
 <meta name="author" content="Lado Studio">
 <link rel="canonical" href="https://studiolado.com">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lado Studio — Objetos com presença.">
-<meta property="og:description" content="Objetos sob encomenda revestidos em azulejo artesanal. Cubos, mesas, bancos e módulos feitos no Rio de Janeiro.">
+<meta property="og:description" content="Objetos sob encomenda revestidos em azulejo artesanal. Cubos, mesas, bancos e buffets feitos no Rio de Janeiro.">
 <meta property="og:url" content="https://studiolado.com">
 <meta property="og:image" content="https://studiolado.com/images/hero.jpg">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lado Studio — Objetos com presença.">
-<meta name="twitter:description" content="Objetos sob encomenda revestidos em azulejo artesanal. Cubos, mesas, bancos e módulos feitos no Rio de Janeiro.">
+<meta name="twitter:description" content="Objetos sob encomenda revestidos em azulejo artesanal. Cubos, mesas, bancos e buffets feitos no Rio de Janeiro.">
 <meta name="twitter:image" content="https://studiolado.com/images/hero.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -41,16 +41,16 @@ body{font-family:'PPFrama',sans-serif;background:var(--butter);color:var(--ink);
 nav{
   position:fixed;top:0;left:0;right:0;z-index:500;
   height:56px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 56px;background:var(--plum);
-  border-bottom:1px solid rgba(255,255,255,.06);
+  padding:0 56px;background:var(--butter);
+  border-bottom:1px solid rgba(76,32,24,.08);
   transition:background .3s;
 }
-nav.scrolled{background:rgba(76,32,24,.97);backdrop-filter:blur(12px);}
+nav.scrolled{background:rgba(245,237,216,.97);backdrop-filter:blur(12px);}
 .nav-logo{display:flex;flex-direction:column;align-items:flex-start;line-height:1;gap:0;text-decoration:none;}
-.nl-s{font-family:'Caveat',cursive;font-size:11px;color:var(--sand);line-height:1;margin-bottom:-1px;}
-.nl-l{font-family:'PPFrama',sans-serif;font-weight:900;font-size:18px;color:var(--butter);letter-spacing:-.01em;}
+.nl-s{font-family:'Caveat',cursive;font-size:11px;color:var(--olive);line-height:1;margin-bottom:-1px;}
+.nl-l{font-family:'PPFrama',sans-serif;font-weight:900;font-size:18px;color:var(--plum);letter-spacing:-.01em;}
 .nav-links{display:flex;gap:36px;list-style:none;}
-.nav-links a{font-family:'PPFrama',sans-serif;font-weight:200;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--butter);text-decoration:none;opacity:.45;transition:opacity .2s;}
+.nav-links a{font-family:'PPFrama',sans-serif;font-weight:200;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--plum);text-decoration:none;opacity:.55;transition:opacity .2s;}
 .nav-links a:hover{opacity:1;}
 .nav-cta{font-family:'PPFrama',sans-serif;font-weight:900;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 20px;background:var(--brasa);color:white;border:none;cursor:pointer;transition:background .2s;}
 .nav-cta:hover{background:#a82010;}
@@ -364,14 +364,14 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 
 /* ── MOBILE NAV ── */
 .nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;}
-.nav-hamburger span{display:block;width:22px;height:2px;background:var(--butter);margin:5px 0;transition:all .3s;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--plum);margin:5px 0;transition:all .3s;}
 .nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
 .nav-hamburger.open span:nth-child(2){opacity:0;}
 .nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
 
-.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:var(--plum);z-index:499;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:var(--butter);z-index:499;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
 .mobile-menu.open{display:flex;}
-.mobile-menu a{font-family:'PPFrama',sans-serif;font-weight:200;font-size:18px;letter-spacing:.16em;text-transform:uppercase;color:var(--butter);text-decoration:none;opacity:.7;transition:opacity .2s;}
+.mobile-menu a{font-family:'PPFrama',sans-serif;font-weight:200;font-size:18px;letter-spacing:.16em;text-transform:uppercase;color:var(--plum);text-decoration:none;opacity:.7;transition:opacity .2s;}
 .mobile-menu a:hover{opacity:1;}
 
 /* ── ADDITIONAL RESPONSIVE ── */
@@ -409,10 +409,10 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
   "@context": "https://schema.org",
   "@type": "FurnitureStore",
   "name": "Lado Studio",
-  "description": "Objetos sob encomenda revestidos em azulejo artesanal. Cubos, mesas, bancos e módulos feitos no Rio de Janeiro.",
+  "description": "Objetos sob encomenda revestidos em azulejo artesanal. Cubos, mesas, bancos e buffets feitos no Rio de Janeiro.",
   "url": "https://studiolado.com",
   "image": "https://studiolado.com/images/hero.jpg",
-  "telephone": "+5521998690864",
+  "telephone": "+5521972240493",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Rio de Janeiro",
@@ -629,17 +629,17 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
   <div class="product-grid reveal" style="margin-top:3px;">
     <div class="product-card" onclick="openLightbox('images/product-9.jpg')">
       <span class="product-tag tag-custom">Novo</span>
-      <img class="product-img" src="images/product-9.jpg" loading="lazy" alt="Módulo Vinil / Estante">
+      <img class="product-img" src="images/product-9.jpg" loading="lazy" alt="Buffet Alto">
       <div class="product-info">
-        <div class="pi-cat">Estante · Módulo</div>
-        <div class="pi-name">Módulo Open M</div>
-        <div class="pi-sku">MÓDULO-M · 60×40×70 cm · Azulejo 4,7×4,7</div>
+        <div class="pi-cat">Console · Buffet</div>
+        <div class="pi-name">Buffet Alto</div>
+        <div class="pi-sku">MÓDULO · 100×35×80 cm · Azulejo 4,7×4,7</div>
         <div class="product-colors">
           <div class="pcolor" style="background:#C8B8D8;" title="Lilás"></div>
           <div class="pcolor" style="background:#B9D0D4;" title="Sky"></div>
           <div class="pcolor" style="background:#FDFAF5;border-color:#ccc;" title="Marfim"></div>
         </div>
-        <div class="pi-price">A partir de R$1.890</div>
+        <div class="pi-price">R$2.900</div>
         <a class="pi-customise" href="#configurator">Personalizar →</a>
       </div>
     </div>
@@ -660,17 +660,18 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       </div>
     </div>
     <div class="product-card" onclick="openLightbox('images/product-13.jpg')">
-      <img class="product-img" src="images/product-13.jpg" loading="lazy" alt="Duo Set">
+      <img class="product-img" src="images/product-13.jpg" loading="lazy" alt="Bureau">
       <div class="product-info">
-        <div class="pi-cat">Set · Composição</div>
-        <div class="pi-name">Duo Set</div>
-        <div class="pi-sku">SET-DUO · 2 peças sob encomenda</div>
+        <div class="pi-cat">Bureau · Escrivaninha</div>
+        <div class="pi-name">Bureau</div>
+        <div class="pi-sku">BUREAU · 120×60×80 cm · Azulejo 4,7×4,7</div>
         <div class="product-colors">
           <div class="pcolor" style="background:#C8B8D8;" title="Lilás"></div>
           <div class="pcolor" style="background:#8A8080;" title="Cinza"></div>
           <div class="pcolor" style="background:#B9D0D4;" title="Sky"></div>
+          <div class="pcolor" style="background:#FDFAF5;border-color:#ccc;" title="Marfim"></div>
         </div>
-        <div class="pi-price">A partir de R$2.400</div>
+        <div class="pi-price">R$3.900</div>
         <a class="pi-customise" href="#configurator">Personalizar →</a>
       </div>
     </div>
@@ -716,8 +717,8 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
             <button class="type-btn" data-type="MESA" data-typename="Mesa lateral">Mesa</button>
             <button class="type-btn" data-type="BANCO" data-typename="Banco">Banco</button>
             <button class="type-btn" data-type="HOLDER" data-typename="Holder">Holder</button>
-            <button class="type-btn" data-type="MÓDULO" data-typename="Módulo">Módulo</button>
-            <button class="type-btn" data-type="SET" data-typename="Set Duo">Set</button>
+            <button class="type-btn" data-type="MÓDULO" data-typename="Buffet Alto">Buffet</button>
+            <button class="type-btn" data-type="SET" data-typename="Bureau">Bureau</button>
           </div>
         </div>
 
@@ -832,7 +833,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
     </div>
     <div class="g-item" onclick="openLightbox('images/product-13.jpg')">
       <img src="images/product-13.jpg" loading="lazy" alt="Cubos lilás e cinza">
-      <div class="g-item-label"><span>Duo Set · Lilás + Cinza</span></div>
+      <div class="g-item-label"><span>Bureau · Lilás + Cinza</span></div>
     </div>
   </div>
 </section>
@@ -971,7 +972,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
     <div class="cta-hed">Sua vaga<br><span class="accent">este mês.</span></div>
     <div class="cta-sub">Vagas limitadas por mês. Quando fecha, fecha. Cada encomenda começa com uma conversa no WhatsApp.</div>
     <div class="cta-btns">
-      <a href="https://wa.me/5521998690864?text=Olá!%20Vi%20o%20Lado%20Studio%20no%20site%20e%20quero%20saber%20mais%20sobre%20encomendas." class="btn-wpp" target="_blank">
+      <a href="https://wa.me/5521972240493?text=Olá!%20Vi%20o%20Lado%20Studio%20no%20site%20e%20quero%20saber%20mais%20sobre%20encomendas." class="btn-wpp" target="_blank">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Falar no WhatsApp
       </a>
@@ -1003,7 +1004,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
     <div class="footer-col">
       <h4>Contato</h4>
       <ul>
-        <li><a href="https://wa.me/5521998690864" target="_blank">WhatsApp</a></li>
+        <li><a href="https://wa.me/5521972240493" target="_blank">WhatsApp</a></li>
         <li><a href="https://instagram.com/ladostudio" target="_blank">@ladostudio</a></li>
         <li><a href="/cdn-cgi/l/email-protection#423630232627022e23262d313637262b2d6c212d2f">Programa Trade</a></li>
         <li><a href="/cdn-cgi/l/email-protection#88e7e4e9c8e4e9ece7fbfcfdece1e7a6ebe7e5"><span class="__cf_email__" data-cfemail="d6b9bab796bab7b2b9a5a2a3b2bfb9f8b5b9bb">[email&#160;protected]</span></a></li>
@@ -1121,16 +1122,16 @@ const prices = {
   MESA:   {P:750,  M:1290, G:2100, XG:2900},
   BANCO:  {P:1200, M:2100, G:3200, XG:4500},
   HOLDER: {P:290,  M:490,  G:790,  XG:1100},
-  'MÓDULO': {P:890, M:1890, G:2900, XG:3900},
-  SET:    {P:1200, M:2400, G:3600, XG:4800},
+  'MÓDULO': {P:2900, M:2900, G:2900, XG:2900},
+  SET:    {P:3900, M:3900, G:3900, XG:3900},
 };
 const dims = {
   CUBO:   {P:'~25×25×25 cm',  M:'~40×40×40 cm',   G:'~55×55×55 cm',   XG:'~70×70×70 cm'},
   MESA:   {P:'~60×30×40 cm',  M:'~90×40×45 cm',   G:'~120×50×50 cm',  XG:'~150×60×55 cm'},
   BANCO:  {P:'~80×35×40 cm',  M:'~120×40×45 cm',  G:'~160×45×50 cm',  XG:'~200×50×55 cm'},
   HOLDER: {P:'~10×10×20 cm',  M:'~15×15×28 cm',   G:'~20×20×36 cm',   XG:'~25×25×44 cm'},
-  'MÓDULO':{P:'~40×35×50 cm', M:'~60×40×70 cm',   G:'~80×45×90 cm',   XG:'~100×50×110 cm'},
-  SET:    {P:'2 peças P',     M:'2 peças M',       G:'2 peças G',      XG:'2 peças XG'},
+  'MÓDULO':{P:'100×35×80 cm', M:'100×35×80 cm',   G:'100×35×80 cm',   XG:'100×35×80 cm'},
+  SET:    {P:'120×60×80 cm',  M:'120×60×80 cm',    G:'120×60×80 cm',   XG:'120×60×80 cm'},
 };
 
 // ── Floating tile background ──
@@ -1155,86 +1156,168 @@ function buildFloatBg(hex) {
   }
 }
 
-// ── SVG tile grid helper ──
-function tileGrid(x,y,w,h,cols,rows,tc,gc,brightness) {
-  let svg = `<g>`;
-  svg += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${gc}" rx="1"/>`;
-  const gap = 2;
-  const tw = (w - gap*(cols+1))/cols;
-  const th = (h - gap*(rows+1))/rows;
-  for(let r=0;r<rows;r++) {
-    for(let c=0;c<cols;c++) {
-      const tx = x + gap + c*(tw+gap);
-      const ty = y + gap + r*(th+gap);
-      const br = brightness + (Math.random()*0.06-0.03);
-      svg += `<rect x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" width="${tw.toFixed(1)}" height="${th.toFixed(1)}" fill="${tc}" opacity="${br.toFixed(2)}" rx="0.5"/>`;
+// ── Isometric 3D tile helpers ──
+// Isometric projection: x-axis goes right-down at 30°, y-axis goes left-down at 30°, z-axis goes up
+const ISO = {
+  // Convert 3D (x,y,z) to 2D screen coords. x=width, y=depth, z=height
+  to2D(x3, y3, z3) {
+    const cos30 = 0.866, sin30 = 0.5;
+    return {
+      x: (x3 - y3) * cos30,
+      y: (x3 + y3) * sin30 - z3
+    };
+  },
+  // Build an isometric face (parallelogram) from 4 3D corners
+  face(corners, fill, opacity=1) {
+    const pts = corners.map(c => ISO.to2D(c[0],c[1],c[2]));
+    const d = pts.map((p,i) => `${i===0?'M':'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ') + 'Z';
+    return `<path d="${d}" fill="${fill}" opacity="${opacity}" stroke="${fill}" stroke-width="0.3"/>`;
+  },
+  // Tile grid on an isometric face. axis: 'front'(x,z), 'side'(y,z), 'top'(x,y)
+  tiledFace(origin, w, h, cols, rows, axis, tc, gc, opacity) {
+    let svg = '';
+    const gap = w * 0.015;
+    const tw = (w - gap*(cols+1)) / cols;
+    const th = (h - gap*(rows+1)) / rows;
+    // Draw grout bg
+    const corners = [];
+    for (let ci = 0; ci < 4; ci++) {
+      let dx=0, dy=0, dz=0;
+      if (axis==='front') {
+        if(ci===1||ci===2) dx=w; if(ci===2||ci===3) dz=-h;
+      } else if (axis==='side') {
+        if(ci===1||ci===2) dy=w; if(ci===2||ci===3) dz=-h;
+      } else { // top
+        if(ci===1||ci===2) dx=w; if(ci===2||ci===3) dy=h;
+      }
+      corners.push([origin[0]+dx, origin[1]+dy, origin[2]+dz]);
     }
+    svg += ISO.face(corners, gc, opacity);
+    // Draw tiles
+    for(let r=0; r<rows; r++) {
+      for(let c=0; c<cols; c++) {
+        const tOff1 = gap + c*(tw+gap);
+        const tOff2 = gap + r*(th+gap);
+        const br = opacity;
+        const tc2 = [];
+        for(let ti=0; ti<4; ti++) {
+          let dx=0,dy=0,dz=0;
+          if(axis==='front') {
+            dx = tOff1 + (ti===1||ti===2 ? tw : 0);
+            dz = -(tOff2 + (ti===2||ti===3 ? th : 0));
+          } else if(axis==='side') {
+            dy = tOff1 + (ti===1||ti===2 ? tw : 0);
+            dz = -(tOff2 + (ti===2||ti===3 ? th : 0));
+          } else {
+            dx = tOff1 + (ti===1||ti===2 ? tw : 0);
+            dy = tOff2 + (ti===2||ti===3 ? th : 0);
+          }
+          tc2.push([origin[0]+dx, origin[1]+dy, origin[2]+dz]);
+        }
+        svg += ISO.face(tc2, tc, Math.min(br, 1));
+      }
+    }
+    return svg;
   }
-  svg += `</g>`;
-  return svg;
-}
+};
 
-// ── Product SVG drawers ──
+// ── Product SVG drawers (isometric 3D) ──
+// All products rendered in isometric projection with proper proportions
+// Viewbox is set so center origin is at (160,140) via a translate in updatePreview
+
 function drawCube(tc, gc) {
-  const f = tileGrid(60, 90, 140, 140, 6, 6, tc, gc, 1);
-  const topSkew = `<g transform="skewY(-18) translate(0,38)">
-    <rect x="60" y="10" width="140" height="85" fill="${gc}" rx="1"/>
-    ${Array.from({length:4},(_,r)=>Array.from({length:6},(_,c)=>{
-      const tx=60+2+c*23.5, ty=10+2+r*20.5;
-      return `<rect x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" width="21" height="18" fill="${tc}" opacity="1.05" rx="0.5"/>`;
-    }).join('')).join('')}
-  </g>`;
-  const sideSkew = `<g transform="skewX(-18) translate(80,0)">
-    <rect x="196" y="90" width="80" height="140" fill="${gc}" rx="1"/>
-    ${Array.from({length:6},(_,r)=>Array.from({length:4},(_,c)=>{
-      const tx=196+2+c*19, ty=90+2+r*23;
-      return `<rect x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" width="17" height="21" fill="${tc}" opacity="0.78" rx="0.5"/>`;
-    }).join('')).join('')}
-  </g>`;
-  return `<g>${sideSkew}${topSkew}${f}</g>`;
+  // Cube: 40×40×40 cm → s=100 units
+  const s = 100;
+  const bottom = ISO.tiledFace([0,0,0], s, s, 5, 5, 'top',   tc, gc, 1);
+  const left   = ISO.tiledFace([0,0,s], s, s, 5, 5, 'side',  tc, gc, 1);
+  const front  = ISO.tiledFace([0,0,s], s, s, 5, 5, 'front', tc, gc, 1);
+  const right  = ISO.tiledFace([s,0,s], s, s, 5, 5, 'side',  tc, gc, 1);
+  const top    = ISO.tiledFace([0,0,s], s, s, 5, 5, 'top',   tc, gc, 1);
+  return `<g>${bottom}${left}${front}${right}${top}</g>`;
 }
 
 function drawMesa(tc, gc) {
-  const top  = tileGrid(20, 60,  280, 50,  10, 2, tc, gc, 1);
-  const body = tileGrid(20, 108, 280, 100, 10, 4, tc, gc, 1);
-  const shelf= tileGrid(30, 155, 260, 20,  10, 1, tc, gc, 0.85);
-  return `<g>${top}${body}${shelf}</g>`;
+  // Mesa: 120×60×40 cm — coffee table with 4 tiled legs
+  const w=150, d=75, h=50, legW=14, legD=14, legH=28, topH=22;
+  const oL=6, oD=6;
+  const backLegs = [[oL, d-legD-oD], [w-legW-oL, d-legD-oD]];
+  const frontLegs = [[oL, oD], [w-legW-oL, oD]];
+  let legSvg = '';
+  backLegs.forEach(([lx,ly]) => {
+    legSvg += ISO.tiledFace([lx,ly,h-topH], legW, legH, 1, 2, 'front', tc, gc, 1);
+    legSvg += ISO.tiledFace([lx+legW,ly,h-topH], legD, legH, 1, 2, 'side', tc, gc, 1);
+  });
+  frontLegs.forEach(([lx,ly]) => {
+    legSvg += ISO.tiledFace([lx,ly,h-topH], legW, legH, 1, 2, 'front', tc, gc, 1);
+    legSvg += ISO.tiledFace([lx+legW,ly,h-topH], legD, legH, 1, 2, 'side', tc, gc, 1);
+  });
+  const tLeft  = ISO.tiledFace([0,0,h], d, topH, 4, 1, 'side',  tc, gc, 1);
+  const tFront = ISO.tiledFace([0,0,h], w, topH, 8, 1, 'front', tc, gc, 1);
+  const tRight = ISO.tiledFace([w,0,h], d, topH, 4, 1, 'side',  tc, gc, 1);
+  const tTop   = ISO.tiledFace([0,0,h], w, d,    8, 4, 'top',   tc, gc, 1);
+  return `<g>${legSvg}${tLeft}${tFront}${tRight}${tTop}</g>`;
 }
 
 function drawBanco(tc, gc) {
-  const seat  = tileGrid(10, 80,  300, 60, 12, 2, tc, gc, 1);
-  const front = tileGrid(10, 138, 300, 40, 12, 2, tc, gc, 0.9);
-  const legL  = tileGrid(18, 176, 50,  80,  2, 3, tc, gc, 0.82);
-  const legR  = tileGrid(252,176, 50,  80,  2, 3, tc, gc, 0.82);
-  return `<g>${seat}${front}${legL}${legR}</g>`;
+  // Banco: 120×40×45 cm — bench with thick tiled seat, 2 side legs
+  const w=160, d=50, seatH=18, totalH=60, legH=totalH-seatH;
+  const legInset = 4;
+  const legThick = 10;
+  const lL  = ISO.tiledFace([legInset, legInset, legH], legThick, legH, 1, 3, 'front', tc, gc, 1);
+  const lLs = ISO.tiledFace([legInset, legInset, legH], d-legInset*2, legH, 3, 3, 'side', tc, gc, 1);
+  const lR  = ISO.tiledFace([w-legInset-legThick, legInset, legH], legThick, legH, 1, 3, 'front', tc, gc, 1);
+  const lRs = ISO.tiledFace([w-legInset, legInset, legH], d-legInset*2, legH, 3, 3, 'side', tc, gc, 1);
+  const sLeft  = ISO.tiledFace([0,0,totalH], d, seatH, 3, 1, 'side', tc, gc, 1);
+  const sFront = ISO.tiledFace([0,0,totalH], w, seatH, 10, 1, 'front', tc, gc, 1);
+  const sRight = ISO.tiledFace([w,0,totalH], d, seatH, 3, 1, 'side', tc, gc, 1);
+  const sTop   = ISO.tiledFace([0,0,totalH], w, d, 10, 3, 'top', tc, gc, 1);
+  return `<g>${lL}${lLs}${lR}${lRs}${sLeft}${sFront}${sRight}${sTop}</g>`;
 }
 
 function drawHolder(tc, gc) {
-  const body = tileGrid(90, 30, 140, 200, 5, 8, tc, gc, 1);
-  const rim  = `<rect x="90" y="25" width="140" height="10" fill="${gc}" rx="1"/>`;
-  return `<g>${rim}${body}</g>`;
+  // Holder: 15×15×28 cm — tall narrow tiled box
+  const s=55, h=120;
+  const left  = ISO.tiledFace([0,0,h], s, h, 3, 6, 'side',  tc, gc, 1);
+  const front = ISO.tiledFace([0,0,h], s, h, 3, 6, 'front', tc, gc, 1);
+  const right = ISO.tiledFace([s,0,h], s, h, 3, 6, 'side',  tc, gc, 1);
+  const top   = ISO.tiledFace([0,0,h], s, s, 3, 3, 'top',   tc, gc, 1);
+  return `<g>${left}${front}${right}${top}</g>`;
 }
 
 function drawModulo(tc, gc) {
-  const topBar   = tileGrid(40,  30,  240, 44,  9, 2, tc, gc, 1);
-  const leftCol  = tileGrid(40,  72,  70,  180, 3, 7, tc, gc, 1);
-  const rightCol = tileGrid(210, 72,  70,  180, 3, 7, tc, gc, 1);
-  const botBar   = tileGrid(40,  218, 240, 44,  9, 2, tc, gc, 0.9);
-  const inner    = `<rect x="112" y="72" width="96" height="146" fill="rgba(0,0,0,0.18)" rx="1"/>`;
-  return `<g>${topBar}${leftCol}${rightCol}${botBar}${inner}</g>`;
+  // Buffet Alto: 100×35×80 cm — U-shaped console
+  const w=130, d=46, h=104, panelW=12;
+  // Left side panel
+  const lpL = ISO.tiledFace([0,0,h-panelW], d, h-panelW, 3, 6, 'side', tc, gc, 1);
+  const lpF = ISO.tiledFace([0,0,h-panelW], panelW, h-panelW, 1, 6, 'front', tc, gc, 1);
+  const lpR = ISO.tiledFace([panelW,0,h-panelW], d, h-panelW, 3, 6, 'side', tc, gc, 1);
+  // Right side panel
+  const rpF = ISO.tiledFace([w-panelW,0,h-panelW], panelW, h-panelW, 1, 6, 'front', tc, gc, 1);
+  const rpR = ISO.tiledFace([w,0,h-panelW], d, h-panelW, 3, 6, 'side', tc, gc, 1);
+  // Top slab
+  const topL = ISO.tiledFace([0,0,h], d, panelW, 3, 1, 'side', tc, gc, 1);
+  const topF = ISO.tiledFace([0,0,h], w, panelW, 9, 1, 'front', tc, gc, 1);
+  const topR = ISO.tiledFace([w,0,h], d, panelW, 3, 1, 'side', tc, gc, 1);
+  const topT = ISO.tiledFace([0,0,h], w, d, 9, 3, 'top', tc, gc, 1);
+  return `<g>${lpL}${lpF}${lpR}${rpF}${rpR}${topL}${topF}${topR}${topT}</g>`;
 }
 
 function drawSet(tc, gc) {
-  const cube1 = tileGrid(20,  80,  130, 130, 5, 5, tc, gc, 1);
-  const cube2 = tileGrid(170, 110, 110, 110, 4, 4, tc, gc, 0.88);
-  const top2  = `<g transform="translate(0,-8)">
-    <rect x="170" y="60" width="110" height="52" fill="${gc}" rx="1"/>
-    ${Array.from({length:2},(_,r)=>Array.from({length:4},(_,c)=>{
-      const tx=172+c*26.5, ty=62+r*24;
-      return `<rect x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" width="24" height="22" fill="${tc}" opacity="1.05" rx="0.5"/>`;
-    }).join('')).join('')}
-  </g>`;
-  return `<g>${cube1}${cube2}${top2}</g>`;
+  // Bureau / Desk: 120×60×80 cm — U-shaped desk
+  const w=132, d=66, h=88, panelW=11;
+  // Left side panel
+  const lpL = ISO.tiledFace([0,0,h-panelW], d, h-panelW, 4, 6, 'side', tc, gc, 1);
+  const lpF = ISO.tiledFace([0,0,h-panelW], panelW, h-panelW, 1, 6, 'front', tc, gc, 1);
+  const lpR = ISO.tiledFace([panelW,0,h-panelW], d, h-panelW, 4, 6, 'side', tc, gc, 1);
+  // Right side panel
+  const rpF = ISO.tiledFace([w-panelW,0,h-panelW], panelW, h-panelW, 1, 6, 'front', tc, gc, 1);
+  const rpR = ISO.tiledFace([w,0,h-panelW], d, h-panelW, 4, 6, 'side', tc, gc, 1);
+  // Top slab
+  const topL = ISO.tiledFace([0,0,h], d, panelW, 4, 1, 'side', tc, gc, 1);
+  const topF = ISO.tiledFace([0,0,h], w, panelW, 10, 1, 'front', tc, gc, 1);
+  const topR = ISO.tiledFace([w,0,h], d, panelW, 4, 1, 'side', tc, gc, 1);
+  const topT = ISO.tiledFace([0,0,h], w, d, 10, 4, 'top', tc, gc, 1);
+  return `<g>${lpL}${lpF}${lpR}${rpF}${rpR}${topL}${topF}${topR}${topT}</g>`;
 }
 
 function updatePreview() {
@@ -1243,6 +1326,15 @@ function updatePreview() {
   const wrap = document.getElementById('productSvgWrap');
   if(!wrap) return;
   let inner = '';
+  // ViewBox offsets per product to center the isometric rendering (includes all faces)
+  const vb = {
+    'CUBO':  {x:-102, y:-115, w:204, h:230},
+    'MESA':  {x:-80,  y:-65,  w:225, h:193},
+    'BANCO': {x:-59,  y:-75,  w:212, h:195},
+    'HOLDER':{x:-63,  y:-135, w:126, h:205},
+    'MÓDULO':{x:-55,  y:-119, w:183, h:222},
+    'SET':   {x:-73,  y:-103, w:202, h:217},
+  };
   switch(state.type) {
     case 'CUBO':    inner = drawCube(tc, gc);   break;
     case 'MESA':    inner = drawMesa(tc, gc);   break;
@@ -1252,7 +1344,9 @@ function updatePreview() {
     case 'SET':     inner = drawSet(tc, gc);    break;
     default:        inner = drawCube(tc, gc);
   }
-  wrap.innerHTML = `<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;">${inner}</svg>`;
+  const v = vb[state.type] || vb['CUBO'];
+  const pad = 15;
+  wrap.innerHTML = `<svg viewBox="${v.x-pad} ${v.y-pad} ${v.w+pad*2} ${v.h+pad*2}" xmlns="http://www.w3.org/2000/svg" style="width:100%;">${inner}</svg>`;
   buildFloatBg(tc);
 
   const sku   = `${state.type}-${state.size}-${state.colour}`;
@@ -1318,7 +1412,7 @@ if(configCta) configCta.addEventListener('click', function() {
   const price = (prices[state.type] && prices[state.type][state.size]) || 890;
   const dim   = (dims[state.type]   && dims[state.type][state.size])   || '';
   const msg   = encodeURIComponent(`Olá! Vim do site do Lado Studio e quero encomendar:\n\nPeça: ${state.typeName}\nSKU: ${sku}\nDimensões: ${dim}\nCor: ${state.colour}\nRejunte: ${state.grout}\nPreço base: R$${price.toLocaleString('pt-BR')}\n\nPode me dar mais informações?`);
-  window.open(`https://wa.me/5521998690864?text=${msg}`, '_blank');
+  window.open(`https://wa.me/5521972240493?text=${msg}`, '_blank');
   showToast('Abrindo WhatsApp...');
 });
 
