@@ -47,8 +47,8 @@ nav{
 }
 nav.scrolled{background:rgba(245,237,216,.97);backdrop-filter:blur(12px);}
 .nav-logo{display:flex;flex-direction:column;align-items:flex-start;line-height:1;gap:0;text-decoration:none;}
-.nl-s{font-family:'Caveat',cursive;font-size:11px;color:var(--olive);line-height:1;margin-bottom:-1px;}
-.nl-l{font-family:'PPFrama',sans-serif;font-weight:900;font-size:18px;color:var(--plum);letter-spacing:-.01em;}
+.nl-s{font-family:'Caveat',cursive;font-size:14px;color:var(--olive);line-height:1;margin-bottom:-1px;}
+.nl-l{font-family:'PPFrama',sans-serif;font-weight:900;font-size:24px;color:var(--plum);letter-spacing:-.01em;}
 .nav-links{display:flex;gap:36px;list-style:none;}
 .nav-links a{font-family:'PPFrama',sans-serif;font-weight:200;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--plum);text-decoration:none;opacity:.55;transition:opacity .2s;}
 .nav-links a:hover{opacity:1;}
@@ -58,7 +58,7 @@ nav.scrolled{background:rgba(245,237,216,.97);backdrop-filter:blur(12px);}
 /* ── HERO ── */
 #hero{
   min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
-  padding-top:56px;background:#ffffff;overflow:hidden;
+  padding-top:56px;background:var(--butter);overflow:hidden;
 }
 .hero-l{
   display:flex;flex-direction:column;justify-content:flex-end;
@@ -68,8 +68,8 @@ nav.scrolled{background:rgba(245,237,216,.97);backdrop-filter:blur(12px);}
 .hero-logo{display:flex;flex-direction:column;align-items:flex-start;}
 .hero-s{font-family:'Caveat',cursive;font-size:clamp(24px,3vw,38px);color:var(--olive);line-height:1;margin-bottom:0;margin-left:4px;opacity:0;animation:fadeUp .8s .2s forwards;}
 h1.hero-l2{margin:0;}
-.hero-l2{font-family:'PPFrama',sans-serif;font-weight:900;font-size:clamp(88px,13vw,160px);color:#000000;line-height:.84;letter-spacing:-.025em;opacity:0;animation:fadeUp .8s .35s forwards;}
-.hero-tag{font-family:'PPFrama',sans-serif;font-weight:200;font-size:clamp(18px,2.2vw,26px);color:var(--plum);line-height:1.3;max-width:280px;margin-top:36px;opacity:0;animation:fadeUp .8s .5s forwards;border-bottom:2px solid var(--brasa);padding-bottom:12px;display:inline-block;}
+.hero-l2{font-family:'PPFrama',sans-serif;font-weight:900;font-size:clamp(88px,13vw,160px);color:var(--plum);line-height:.84;letter-spacing:-.025em;opacity:0;animation:fadeUp .8s .35s forwards;}
+.hero-tag{font-family:'PPFrama',sans-serif;font-weight:200;font-size:clamp(18px,2.2vw,26px);color:#000000;line-height:1.3;max-width:280px;margin-top:36px;opacity:0;animation:fadeUp .8s .5s forwards;border-bottom:2px solid var(--sky);padding-bottom:12px;display:inline-block;}
 .hero-tag em{font-style:normal;color:var(--plum);}
 .hero-strip{display:none;}
 .hero-chip{height:4px;border-radius:1px;}
@@ -82,14 +82,11 @@ h1.hero-l2{margin:0;}
 
 .hero-r{position:relative;overflow:hidden;}
 .hero-img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;animation:fadeIn 1.2s .1s forwards;}
-.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,#ffffff 0%,transparent 30%);pointer-events:none;}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--butter) 0%,transparent 25%);pointer-events:none;}
 .hero-scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;}
 .scroll-line{width:1px;height:48px;background:rgba(76,32,24,.15);animation:scrollLine 2s 1.5s infinite;}
 .scroll-text{font-family:'PPFrama',sans-serif;font-weight:200;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(76,32,24,.25);}
 
-/* tile grid watermark on hero */
-.hero-grid-mark{position:absolute;bottom:0;left:0;right:0;height:80px;display:grid;grid-template-columns:repeat(20,1fr);gap:2px;opacity:.12;pointer-events:none;}
-.hgm-tile{background:var(--plum);}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
@@ -489,10 +486,9 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       <a href="#products" class="btn-primary">Ver coleção</a>
       <a href="#configurator" class="btn-secondary">Criar sua peça</a>
     </div>
-    <div class="hero-grid-mark" id="heroGrid"></div>
   </div>
   <div class="hero-r">
-    <img class="hero-img" src="images/hero2.jpg" alt="Lado Studio — cubo azulejo branco com luminária laranja">
+    <img class="hero-img" src="images/hero5.jpg" alt="Lado Studio — cubo azulejo branco com luminária laranja">
     <div class="hero-img-overlay"></div>
     <div class="hero-scroll-hint">
       <div class="scroll-text">rolar</div>
@@ -1095,13 +1091,6 @@ const observer = new IntersectionObserver(entries => {
 }, {threshold:0});
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ── Hero grid ──
-const hg = document.getElementById('heroGrid');
-if(hg) for(let i=0;i<40;i++){
-  const t=document.createElement('div'); t.className='hgm-tile';
-  if(Math.random()>.7) t.style.background='var(--sky)';
-  hg.appendChild(t);
-}
 
 // ── Footer tile mark ──
 const fm = document.getElementById('footerMark');
