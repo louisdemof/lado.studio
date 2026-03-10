@@ -57,35 +57,28 @@ nav.scrolled{background:rgba(245,237,216,.97);backdrop-filter:blur(12px);}
 
 /* ── HERO ── */
 #hero{
-  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
-  padding-top:56px;background:var(--butter);overflow:hidden;
+  position:relative;min-height:100vh;overflow:hidden;
 }
-.hero-l{
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding:80px 72px;position:relative;
+.hero-img{width:100%;height:100vh;object-fit:cover;display:block;opacity:0;animation:fadeIn 1.2s .1s forwards;}
+.hero-overlay{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:flex-start;justify-content:flex-end;
+  padding:0 72px 80px;
+  background:linear-gradient(to top, rgba(0,0,0,.25) 0%, transparent 50%);
+  pointer-events:none;
 }
-.hero-eyebrow{font-family:'PPFrama',sans-serif;font-weight:200;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(76,32,24,.25);margin-bottom:48px;}
-.hero-logo{display:flex;flex-direction:column;align-items:flex-start;}
-.hero-s{font-family:'Caveat',cursive;font-size:clamp(24px,3vw,38px);color:var(--olive);line-height:1;margin-bottom:0;margin-left:4px;opacity:0;animation:fadeUp .8s .2s forwards;}
+.hero-logo{display:flex;flex-direction:column;align-items:flex-start;pointer-events:auto;}
+.hero-s{font-family:'Caveat',cursive;font-size:clamp(28px,3.5vw,44px);color:#ffffff;line-height:1;margin-bottom:0;margin-left:6px;opacity:0;animation:fadeUp .8s .2s forwards;text-shadow:0 2px 12px rgba(0,0,0,.2);}
 h1.hero-l2{margin:0;}
-.hero-l2{font-family:'PPFrama',sans-serif;font-weight:900;font-size:clamp(88px,13vw,160px);color:var(--plum);line-height:.84;letter-spacing:-.025em;opacity:0;animation:fadeUp .8s .35s forwards;}
-.hero-tag{font-family:'PPFrama',sans-serif;font-weight:200;font-size:clamp(18px,2.2vw,26px);color:#000000;line-height:1.3;max-width:280px;margin-top:36px;opacity:0;animation:fadeUp .8s .5s forwards;border-bottom:2px solid var(--sky);padding-bottom:12px;display:inline-block;}
-.hero-tag em{font-style:normal;color:var(--plum);}
-.hero-strip{display:none;}
-.hero-chip{height:4px;border-radius:1px;}
-.hero-sub{font-family:'PPFrama',sans-serif;font-weight:200;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(76,32,24,.25);margin-top:16px;opacity:0;animation:fadeIn 1s .9s forwards;}
-.hero-btns{display:flex;gap:12px;margin-top:36px;opacity:0;animation:fadeUp .8s .7s forwards;}
+.hero-l2{font-family:'PPFrama',sans-serif;font-weight:900;font-size:clamp(100px,15vw,200px);color:#ffffff;line-height:.84;letter-spacing:-.025em;opacity:0;animation:fadeUp .8s .35s forwards;text-shadow:0 4px 24px rgba(0,0,0,.15);}
+.hero-tag{font-family:'PPFrama',sans-serif;font-weight:200;font-size:clamp(16px,2vw,22px);color:rgba(255,255,255,.85);line-height:1.3;margin-top:24px;opacity:0;animation:fadeUp .8s .5s forwards;text-shadow:0 1px 8px rgba(0,0,0,.2);pointer-events:auto;}
+.hero-scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;}
+.scroll-line{width:1px;height:48px;background:rgba(255,255,255,.3);animation:scrollLine 2s 1.5s infinite;}
+.scroll-text{font-family:'PPFrama',sans-serif;font-weight:200;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);}
 .btn-primary{font-family:'PPFrama',sans-serif;font-weight:900;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px 32px;background:var(--plum);color:var(--butter);border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
 .btn-primary:hover{background:var(--brasa);color:white;}
 .btn-secondary{font-family:'PPFrama',sans-serif;font-weight:200;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px 32px;background:transparent;color:var(--plum);border:1px solid rgba(76,32,24,.2);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
 .btn-secondary:hover{border-color:var(--brasa);color:var(--brasa);}
-
-.hero-r{position:relative;overflow:hidden;}
-.hero-img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;animation:fadeIn 1.2s .1s forwards;}
-.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--butter) 0%,transparent 25%);pointer-events:none;}
-.hero-scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;}
-.scroll-line{width:1px;height:48px;background:rgba(76,32,24,.15);animation:scrollLine 2s 1.5s infinite;}
-.scroll-text{font-family:'PPFrama',sans-serif;font-weight:200;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(76,32,24,.25);}
 
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
@@ -150,7 +143,7 @@ h2.sec-label{margin:0;font-size:inherit;}
 .product-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;margin-top:3px;}
 
 /* ── CONFIGURATOR ── */
-#configurator{background:var(--olive);padding:120px 80px;}
+#configurator{background:var(--plum);padding:120px 80px;}
 .configurator-inner{max-width:1200px;margin:0 auto;}
 .config-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:64px;align-items:end;}
 .config-hed{font-family:'PPFrama',sans-serif;font-weight:900;font-size:clamp(28px,4.5vw,60px);letter-spacing:-.02em;line-height:.9;color:var(--butter);}
@@ -334,8 +327,6 @@ footer{background:var(--ink);padding:64px 80px;}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
-  #hero{grid-template-columns:1fr;}
-  .hero-r{display:none;}
   nav .nav-links{display:none;}
   nav{padding:0 24px;}
   #manifesto,.manifesto-inner{padding:60px 24px;}
@@ -376,8 +367,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 
 /* ── ADDITIONAL RESPONSIVE ── */
 @media(max-width:1200px){
-  #hero{grid-template-columns:1fr 1fr;}
-  .hero-l{padding:60px 48px;}
+  .hero-overlay{padding:0 48px 60px;}
   .manifesto-inner{gap:48px;}
   .config-header{gap:48px;}
   .gallery-header{gap:48px;}
@@ -385,8 +375,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 
 @media(max-width:900px){
   .nav-hamburger{display:block;}
-  .hero-r{display:block;max-height:40vh;overflow:hidden;}
-  .hero-scroll-hint{display:none;}
+  .hero-overlay{padding:0 24px 48px;}
   .gallery-grid{grid-template-columns:1fr 1fr;}
   .g-item.tall{grid-row:span 1;}
   .g-item.wide{grid-column:span 2;}
@@ -398,7 +387,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
   .product-card:first-child{grid-column:span 1;}
   .gallery-grid{grid-template-columns:1fr;}
   .g-item.wide{grid-column:span 1;}
-  .hero-l{padding:48px 24px;}
+  .hero-overlay{padding:0 20px 36px;}
   .cta-btns{flex-direction:column;align-items:center;}
   .config-controls{padding:24px;}
   .colour-selector{grid-template-columns:repeat(3,1fr);}
@@ -471,29 +460,17 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 <main>
 <!-- ══════════ HERO ══════════ -->
 <section id="hero">
-  <div class="hero-l">
-    <div class="hero-eyebrow">Rio de Janeiro · Objetos sob encomenda · 2026</div>
+  <img class="hero-img" src="images/Banner_hero.jpg" alt="Lado Studio — coleção completa de móveis em azulejo">
+  <div class="hero-overlay">
     <div class="hero-logo">
       <span class="hero-s">studio</span>
       <h1 class="hero-l2">Lado.</h1>
     </div>
-    <div class="hero-tag">Objetos com <em>presença.</em></div>
-    <div class="hero-strip">
-      <div class="hero-chip" style="background:var(--sky);flex:1;"></div>
-    </div>
-    <div class="hero-sub">Azulejo · Grade · Forma · Rio de Janeiro</div>
-    <div class="hero-btns">
-      <a href="#products" class="btn-primary">Ver coleção</a>
-      <a href="#configurator" class="btn-secondary">Criar sua peça</a>
-    </div>
+    <div class="hero-tag">Objetos com presença.</div>
   </div>
-  <div class="hero-r">
-    <img class="hero-img" src="images/hero5.jpg" alt="Lado Studio — cubo azulejo branco com luminária laranja">
-    <div class="hero-img-overlay"></div>
-    <div class="hero-scroll-hint">
-      <div class="scroll-text">rolar</div>
-      <div class="scroll-line"></div>
-    </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-text">rolar</div>
+    <div class="scroll-line"></div>
   </div>
 </section>
 
