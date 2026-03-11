@@ -52,8 +52,8 @@ nav.scrolled{background:rgba(245,237,216,.97);backdrop-filter:blur(12px);}
 .lado-logo__tile{width:.32em;height:.32em;margin-left:.06em;position:relative;top:-.04em;flex-shrink:0;}
 .nav-logo{font-size:28px;color:var(--brasa);}
 .nav-links{display:flex;gap:36px;list-style:none;}
-.nav-links a{font-family:'PPFrama',sans-serif;font-weight:200;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--plum);text-decoration:none;opacity:.55;transition:opacity .2s;}
-.nav-links a:hover{opacity:1;}
+.nav-links a{font-family:'PPFrama',sans-serif;font-weight:900;font-size:10px;letter-spacing:.2em;text-transform:capitalize;color:var(--plum);text-decoration:none;opacity:.55;transition:opacity .2s, color .2s;}
+.nav-links a:hover{opacity:1;color:var(--brasa);}
 .nav-cta{font-family:'PPFrama',sans-serif;font-weight:900;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 20px;background:var(--brasa);color:white;border:none;cursor:pointer;transition:background .2s;}
 .nav-cta:hover{background:#a82010;}
 
@@ -297,8 +297,7 @@ h2.sec-label{margin:0;font-size:inherit;}
 footer{background:var(--ink);padding:64px 80px;}
 .footer-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:64px;}
 
-.footer-s{font-family:'Caveat',cursive;font-size:16px;color:var(--sand);line-height:1;}
-.footer-l{font-family:'PPFrama',sans-serif;font-weight:900;font-size:44px;color:var(--butter);letter-spacing:-.02em;line-height:.88;}
+.footer-logo{font-size:44px;color:var(--butter);}
 .footer-tagline{font-family:'PPFrama',sans-serif;font-weight:200;font-size:12px;color:rgba(255,255,255,.25);margin-top:12px;letter-spacing:.04em;}
 .footer-col h4{font-family:'PPFrama',sans-serif;font-weight:900;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:16px;}
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
@@ -434,10 +433,9 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 <nav id="navbar">
   <a href="#hero" class="lado-logo nav-logo" aria-label="LADO Studio">
     <span class="lado-logo__text">lado</span>
-    <svg class="lado-logo__tile" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100" height="100" rx="8" fill="currentColor"/>
-      <line x1="0" y1="50" x2="100" y2="50" stroke="var(--butter)" stroke-width="5"/>
-      <line x1="50" y1="0" x2="50" y2="100" stroke="var(--butter)" stroke-width="5"/>
+    <svg class="lado-logo__tile" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <mask id="tileM-nav"><rect width="100" height="100" fill="white"/><line x1="0" y1="50" x2="100" y2="50" stroke="black" stroke-width="5"/><line x1="50" y1="0" x2="50" y2="100" stroke="black" stroke-width="5"/></mask>
+      <rect width="100" height="100" rx="8" fill="currentColor" mask="url(#tileM-nav)"/>
     </svg>
   </a>
   <ul class="nav-links">
@@ -467,10 +465,9 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
   <div class="hero-overlay">
     <h1 class="lado-logo hero-logo-main" style="font-size:clamp(100px,15vw,200px);color:#ffffff;">
       <span class="lado-logo__text">lado</span>
-      <svg class="lado-logo__tile" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100" height="100" rx="8" fill="currentColor"/>
-        <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(0,0,0,.15)" stroke-width="5"/>
-        <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(0,0,0,.15)" stroke-width="5"/>
+      <svg class="lado-logo__tile" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <mask id="tileM-hero"><rect width="100" height="100" fill="white"/><line x1="0" y1="50" x2="100" y2="50" stroke="black" stroke-width="5"/><line x1="50" y1="0" x2="50" y2="100" stroke="black" stroke-width="5"/></mask>
+        <rect width="100" height="100" rx="8" fill="currentColor" mask="url(#tileM-hero)"/>
       </svg>
     </h1>
     <div class="hero-tag">Objetos com presença.</div>
@@ -970,8 +967,13 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-s">studio</div>
-      <div class="footer-l">Lado.</div>
+      <a href="#hero" class="lado-logo footer-logo" aria-label="LADO Studio">
+        <span class="lado-logo__text">lado</span>
+        <svg class="lado-logo__tile" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <mask id="tileM-foot"><rect width="100" height="100" fill="white"/><line x1="0" y1="50" x2="100" y2="50" stroke="black" stroke-width="5"/><line x1="50" y1="0" x2="50" y2="100" stroke="black" stroke-width="5"/></mask>
+          <rect width="100" height="100" rx="8" fill="currentColor" mask="url(#tileM-foot)"/>
+        </svg>
+      </a>
       <div class="footer-tagline">Objetos com presença.<br>Rio de Janeiro.</div>
     </div>
     <div class="footer-col">
