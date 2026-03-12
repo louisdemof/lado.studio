@@ -1110,6 +1110,13 @@ const dims = {
 function buildFloatBg(hex) { /* removed */ }
 
 // ── Isometric 3D tile helpers ──
+// Shade a hex colour by a multiplier (0–1 darkens, >1 brightens)
+function shadeHex(hex, f) {
+  const r = Math.min(255, Math.max(0, Math.round(parseInt(hex.slice(1,3),16) * f)));
+  const g = Math.min(255, Math.max(0, Math.round(parseInt(hex.slice(3,5),16) * f)));
+  const b = Math.min(255, Math.max(0, Math.round(parseInt(hex.slice(5,7),16) * f)));
+  return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
+}
 // Isometric projection: x-axis goes right-down at 30°, y-axis goes left-down at 30°, z-axis goes up
 const ISO = {
   // Convert 3D (x,y,z) to 2D screen coords. x=width, y=depth, z=height
@@ -1179,23 +1186,16 @@ const ISO = {
 // Viewbox is set so center origin is at (160,140) via a translate in updatePreview
 
 function drawCube(tc, gc, size) {
-  // Real dimensions H×W×D in cm per size (height first)
-  // P=35×37×37, M=52×37×37, G=92×37×37. Tile ≈ 5cm
-  const sizeMap = {
-    P: {h:35, w:37, d:37},
-    M: {h:52, w:37, d:37},
-    G: {h:92, w:37, d:37}
-  };
+  const sizeMap = { P:{h:35,w:37,d:37}, M:{h:52,w:37,d:37}, G:{h:92,w:37,d:37} };
   const cm = sizeMap[size] || sizeMap.M;
-  const scale = 2.5; // units per cm
+  const scale = 2.5;
   const uw = cm.w * scale, ud = cm.d * scale, uh = cm.h * scale;
   const tw = Math.round(cm.w / 5), td = Math.round(cm.d / 5), th = Math.round(cm.h / 5);
-  const bottom = ISO.tiledFace([0,0,0], uw, ud, tw, td, 'top',   tc, gc, 1);
-  const left   = ISO.tiledFace([0,0,uh], ud, uh, td, th, 'side',  tc, gc, 1);
-  const front  = ISO.tiledFace([0,0,uh], uw, uh, tw, th, 'front', tc, gc, 1);
-  const right  = ISO.tiledFace([uw,0,uh], ud, uh, td, th, 'side',  tc, gc, 1);
-  const top    = ISO.tiledFace([0,0,uh], uw, ud, tw, td, 'top',   tc, gc, 1);
-  return `<g>${bottom}${left}${front}${right}${top}</g>`;
+  // 3 outward-facing faces: right side (x=w), back (y=d), top
+  const right = ISO.tiledFace([uw,0,uh], ud, uh, td, th, 'side',  tc, gc, 1);
+  const back  = ISO.tiledFace([0,ud,uh], uw, uh, tw, th, 'front', tc, gc, 1);
+  const top   = ISO.tiledFace([0,0,uh], uw, ud, tw, td, 'top',   tc, gc, 1);
+  return `<g>${right}${back}${top}</g>`;
 }
 
 function drawMesa(tc, gc) {
@@ -1204,12 +1204,11 @@ function drawMesa(tc, gc) {
   const scale = 2.2;
   const uw = wcm * scale, ud = dcm * scale, uh = hcm * scale;
   const tw = Math.round(wcm / 5), td = Math.round(dcm / 5), th = Math.round(hcm / 5);
-  const bottom = ISO.tiledFace([0,0,0], uw, ud, tw, td, 'top',   tc, gc, 1);
-  const left   = ISO.tiledFace([0,0,uh], ud, uh, td, th, 'side',  tc, gc, 1);
-  const front  = ISO.tiledFace([0,0,uh], uw, uh, tw, th, 'front', tc, gc, 1);
-  const right  = ISO.tiledFace([uw,0,uh], ud, uh, td, th, 'side',  tc, gc, 1);
-  const top    = ISO.tiledFace([0,0,uh], uw, ud, tw, td, 'top',   tc, gc, 1);
-  return `<g>${bottom}${left}${front}${right}${top}</g>`;
+  // 3 outward-facing faces: right side (x=w), back (y=d), top
+  const right = ISO.tiledFace([uw,0,uh], ud, uh, td, th, 'side',  tc, gc, 1);
+  const back  = ISO.tiledFace([0,ud,uh], uw, uh, tw, th, 'front', tc, gc, 1);
+  const top   = ISO.tiledFace([0,0,uh], uw, ud, tw, td, 'top',   tc, gc, 1);
+  return `<g>${right}${back}${top}</g>`;
 }
 
 function drawBanco(tc, gc, size) {
