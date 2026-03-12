@@ -83,7 +83,7 @@ nav.scrolled{background:rgba(245,237,216,.97);backdrop-filter:blur(12px);}
 .lado-logo__tile{width:.32em;height:.32em;margin-left:.06em;position:relative;top:-.04em;flex-shrink:0;}
 .nav-logo{font-size:28px;color:var(--brasa);}
 .nav-links{display:flex;gap:36px;list-style:none;}
-.nav-links a{font-family:var(--font-ui);font-size:var(--text-small);font-weight:500;text-decoration:none;color:inherit;letter-spacing:.01em;transition:color .2s var(--ease-out);}
+.nav-links a{font-family:var(--font-ui);font-size:var(--text-small);font-weight:500;text-decoration:none;color:var(--plum);letter-spacing:.01em;transition:color .2s var(--ease-out);}
 .nav-links a:hover{color:var(--brasa);}
 .nav-cta{display:inline-flex;align-items:center;justify-content:center;padding:.5rem 1.25rem;font-family:var(--font-ui);font-size:var(--text-small);font-weight:500;letter-spacing:.03em;text-transform:uppercase;background:var(--brasa);color:var(--butter);border:none;border-radius:var(--radius-md);cursor:pointer;transition:all .2s var(--ease-out);}
 .nav-cta:hover{background:#A82212;}
@@ -189,9 +189,6 @@ h2.sec-label{margin:0;font-size:inherit;}
 .cube-face.side{width:35%;height:100%;right:-35%;top:0;transform-origin:left;transform:rotateY(-45deg);}
 .cube-tile{background:currentColor;border-radius:0;}
 .preview-label{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-family:var(--font-ui);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);}
-.preview-float-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
-.float-tile{position:absolute;border-radius:2px;opacity:0;animation:floatUp var(--dur,8s) var(--del,0s) infinite ease-in-out;}
-@keyframes floatUp{0%{opacity:0;transform:translateY(0) rotate(var(--rot,0deg));}15%{opacity:var(--op,.15);}85%{opacity:var(--op,.15);}100%{opacity:0;transform:translateY(-80px) rotate(calc(var(--rot,0deg)+15deg));}}
 .shape-preview{display:flex;align-items:center;justify-content:center;width:100%;height:100%;position:relative;z-index:2;}
 /* duplicates removed */
 
@@ -360,7 +357,7 @@ footer{background:var(--ink);padding:64px 80px;}
   nav{padding:0 24px;}
   #manifesto,.manifesto-inner{padding:60px 24px;}
   .manifesto-inner{grid-template-columns:1fr;gap:24px;}
-  #products,#configurator,#gallery,#process,#tiles,#about,#cta,footer{padding:80px 24px;}
+  #products,#configurator,#gallery,#process,#tiles,#about,#story,#cta,footer{padding:80px 24px;}
   .products-header{flex-direction:column;gap:16px;}
   .product-grid{grid-template-columns:1fr 1fr;}
   .product-card:first-child{grid-column:span 2;}
@@ -470,23 +467,21 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
     </svg>
   </a>
   <ul class="nav-links">
-    <li><a href="#products">Peças</a></li>
-    <li><a href="#configurator">Encomendar</a></li>
+    <li><a href="#products">Coleção</a></li>
+    <li><a href="#configurator">Monte sua peça</a></li>
     <li><a href="#gallery">Galeria</a></li>
     <li><a href="#process">Processo</a></li>
-    <li><a href="#about">Sobre</a></li>
   </ul>
-  <button class="nav-cta" data-scrollto="configurator">Encomendar</button>
+  <button class="nav-cta" data-scrollto="configurator">Monte sua peça</button>
   <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu de navegação">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#products" class="mobile-nav-link">Peças</a>
-  <a href="#configurator" class="mobile-nav-link">Encomendar</a>
+  <a href="#products" class="mobile-nav-link">Coleção</a>
+  <a href="#configurator" class="mobile-nav-link">Monte sua peça</a>
   <a href="#gallery" class="mobile-nav-link">Galeria</a>
   <a href="#process" class="mobile-nav-link">Processo</a>
-  <a href="#about" class="mobile-nav-link">Sobre</a>
 </div>
 
 <main>
@@ -513,30 +508,17 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 <section id="manifesto">
   <div class="manifesto-inner reveal">
     <div>
-      <h2 class="sec-label"><span class="n">00</span> Manifesto</h2>
-      <div class="manifesto-label">Rio de Janeiro, 2026</div>
       <div id="coverGrid"></div>
     </div>
     <div>
       <div class="manifesto-text">
-        Objetos que<br>definem o<br>espaço <span class="accent">.</span>
+        Objetos que definem o espaço<span class="accent">.</span>
       </div>
       <div class="manifesto-body">
-        Lado Studio nasceu de um desejo compartilhado — criar algo juntos.
-        Um projeto enraizado em <strong>design, artesanato e vida cotidiana.</strong><br><br>
-        Somos um casal com formações diferentes e habilidades complementares.
-        O que nos une é uma forte sensibilidade para arte, materiais e cultura visual,
-        e a convicção de que o design deve estar presente nos espaços do dia a dia,
-        não apenas em galerias ou showrooms.<br><br>
-        Lado Studio é o resultado deste diálogo — onde design encontra artesanato,
-        onde móveis se tornam expressivos, e onde objetos são feitos para viver,
-        não apenas para ser admirados.
-      </div>
-      <div class="founders">
-        <div>
-          <div class="founders-name">Maité & Louis</div>
-          <div class="founders-sub">from Lado Studio.</div>
-        </div>
+        Às vezes basta um pequeno móvel no canto de uma sala para mudar completamente a atmosfera de um espaço.<br><br>
+        Um banco. Uma mesa lateral. Uma peça colorida.<br><br>
+        Objetos que não são apenas funcionais, mas que trazem charme, identidade e caráter para o ambiente. Criamos peças com personalidade, feitas para dar vida aos interiores e transformar pequenos espaços em lugares especiais.<br><br>
+        Às vezes, tudo começa com um detalhe.
       </div>
     </div>
   </div>
@@ -546,10 +528,9 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 <section id="products">
   <div class="products-header reveal">
     <div>
-      <h2 class="sec-label"><span class="n">01</span> Coleção</h2>
       <div class="products-hed">Standard<br>Modules.</div>
     </div>
-    <div class="products-sub">Cinco peças. Infinitas combinações. Cada encomenda é única.</div>
+    <div class="products-sub" style="max-width:460px;">Uma coleção de modelos icônicos, disponíveis em diferentes tamanhos e pensados para se encaixar em diferentes ambientes.</div>
   </div>
 
   <!-- Row 1: Featured + 1 -->
@@ -557,12 +538,11 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 
     <!-- COFFEE CUBE M - featured -->
     <div class="product-card" onclick="openLightbox('images/product-1.jpg')">
-      <span class="product-tag tag-new">Destaque</span>
       <img class="product-img" src="images/hero.jpg" alt="Coffee Cube M">
       <div class="product-info">
         <div class="pi-cat">Mesa lateral · Plinto</div>
         <div class="pi-name">Coffee Cube M</div>
-        <div class="pi-sku">CUBO-M · 40×40×40 cm · Azulejo 4,7×4,7</div>
+        <div class="pi-sku">CUBO-M · 52 × 37 × 37 cm · Azulejo 4,7×4,7</div>
         <div class="product-colors" id="cube-colors">
           <div class="pcolor" style="background:#B9D0D4;" title="Sky"></div>
           <div class="pcolor" style="background:#C22A15;" title="Brasa"></div>
@@ -571,14 +551,13 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
           <div class="pcolor" style="background:#4a3a2a;" title="Pólvora"></div>
           <div class="pcolor" style="background:#FDFAF5;border-color:#ccc;" title="Marfim"></div>
         </div>
-        <div class="pi-price">A partir de R$890</div>
+        <div class="pi-price">A partir de R$1.499</div>
         <a class="pi-customise" href="#configurator">Personalizar →</a>
       </div>
     </div>
 
     <!-- LAMP / VASE S -->
     <div class="product-card" onclick="openLightbox('images/product-3.jpg')">
-      <span class="product-tag tag-custom">Sob encomenda</span>
       <img class="product-img" src="images/product-3.jpg" loading="lazy" alt="Vaso / Luminária S">
       <div class="product-info">
         <div class="pi-cat">Vaso · Porta-objeto</div>
@@ -590,7 +569,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
           <div class="pcolor" style="background:#B9D0D4;" title="Sky"></div>
           <div class="pcolor" style="background:#C22A15;" title="Brasa"></div>
         </div>
-        <div class="pi-price">A partir de R$490</div>
+        <div class="pi-price">A partir de R$890</div>
         <a class="pi-customise" href="#configurator">Personalizar →</a>
       </div>
     </div>
@@ -605,14 +584,14 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       <div class="product-info">
         <div class="pi-cat">Banco · Console</div>
         <div class="pi-name">Sideboard M</div>
-        <div class="pi-sku">BANCO · 90×40×40 cm · Azulejo 4,7×4,7</div>
+        <div class="pi-sku">BANCO · 43 × 124 × 32 cm · Azulejo 4,7×4,7</div>
         <div class="product-colors">
           <div class="pcolor" style="background:#B9D0D4;" title="Sky"></div>
           <div class="pcolor" style="background:#C8B8D8;" title="Lilás"></div>
           <div class="pcolor" style="background:#4a3a2a;" title="Pólvora"></div>
           <div class="pcolor" style="background:#F5EDD8;" title="Butter"></div>
         </div>
-        <div class="pi-price">A partir de R$2.100</div>
+        <div class="pi-price">A partir de R$2.699</div>
         <a class="pi-customise" href="#configurator">Personalizar →</a>
       </div>
     </div>
@@ -623,14 +602,14 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       <div class="product-info">
         <div class="pi-cat">Mesa de centro · Display</div>
         <div class="pi-name">Coffee Table G</div>
-        <div class="pi-sku">MESA-G · 120×60×40 cm · Azulejo 4,7×4,7</div>
+        <div class="pi-sku">MESA-G · 42 × 93 × 58 cm · Azulejo 4,7×4,7</div>
         <div class="product-colors">
           <div class="pcolor" style="background:#FDFAF5;border-color:#ccc;" title="Marfim"></div>
           <div class="pcolor" style="background:#2B2B2B;" title="Negro"></div>
           <div class="pcolor" style="background:#B9D0D4;" title="Sky"></div>
           <div class="pcolor" style="background:#C22A15;" title="Brasa"></div>
         </div>
-        <div class="pi-price">A partir de R$3.200</div>
+        <div class="pi-price">A partir de R$2.949</div>
         <a class="pi-customise" href="#configurator">Personalizar →</a>
       </div>
     </div>
@@ -639,18 +618,17 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
   <!-- Row 3: vinyl table + plant cube -->
   <div class="product-grid reveal" style="margin-top:3px;">
     <div class="product-card" onclick="openLightbox('images/product-9.jpg')">
-      <span class="product-tag tag-custom">Novo</span>
       <img class="product-img" src="images/product-9.jpg" loading="lazy" alt="Buffet Alto">
       <div class="product-info">
         <div class="pi-cat">Console · Buffet</div>
         <div class="pi-name">Buffet Alto</div>
-        <div class="pi-sku">MÓDULO · 100×35×80 cm · Azulejo 4,7×4,7</div>
+        <div class="pi-sku">MÓDULO · 92 × 99 × 32 cm · Azulejo 4,7×4,7</div>
         <div class="product-colors">
           <div class="pcolor" style="background:#C8B8D8;" title="Lilás"></div>
           <div class="pcolor" style="background:#B9D0D4;" title="Sky"></div>
           <div class="pcolor" style="background:#FDFAF5;border-color:#ccc;" title="Marfim"></div>
         </div>
-        <div class="pi-price">R$2.900</div>
+        <div class="pi-price">A partir de R$2.549</div>
         <a class="pi-customise" href="#configurator">Personalizar →</a>
       </div>
     </div>
@@ -659,14 +637,14 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       <div class="product-info">
         <div class="pi-cat">Vaso · Plinto grande</div>
         <div class="pi-name">Cubo Vaso G</div>
-        <div class="pi-sku">CUBO-G · 50×50×50 cm · Azulejo 4,7×4,7</div>
+        <div class="pi-sku">CUBO-G · 92 × 37 × 37 cm · Azulejo 4,7×4,7</div>
         <div class="product-colors">
           <div class="pcolor" style="background:#FDFAF5;border-color:#ccc;" title="Marfim"></div>
           <div class="pcolor" style="background:#B9D0D4;" title="Sky"></div>
           <div class="pcolor" style="background:#C22A15;" title="Brasa"></div>
           <div class="pcolor" style="background:#2B2B2B;" title="Negro"></div>
         </div>
-        <div class="pi-price">A partir de R$1.200</div>
+        <div class="pi-price">A partir de R$1.899</div>
         <a class="pi-customise" href="#configurator">Personalizar →</a>
       </div>
     </div>
@@ -675,18 +653,19 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       <div class="product-info">
         <div class="pi-cat">Bureau · Escrivaninha</div>
         <div class="pi-name">Bureau</div>
-        <div class="pi-sku">BUREAU · 120×60×80 cm · Azulejo 4,7×4,7</div>
+        <div class="pi-sku">BUREAU · 78 × 124 × 63 cm · Azulejo 4,7×4,7</div>
         <div class="product-colors">
           <div class="pcolor" style="background:#C8B8D8;" title="Lilás"></div>
           <div class="pcolor" style="background:#8A8080;" title="Cinza"></div>
           <div class="pcolor" style="background:#B9D0D4;" title="Sky"></div>
           <div class="pcolor" style="background:#FDFAF5;border-color:#ccc;" title="Marfim"></div>
         </div>
-        <div class="pi-price">R$3.900</div>
+        <div class="pi-price">A partir de R$6.599</div>
         <a class="pi-customise" href="#configurator">Personalizar →</a>
       </div>
     </div>
   </div>
+  <div style="text-align:center;margin-top:24px;font-family:var(--font-body);font-weight:400;font-size:13px;color:var(--olive);">Cada peça é única e feita à mão. Pequenas variações fazem parte do processo.</div>
 </section>
 
 <!-- ══════════ CONFIGURATOR ══════════ -->
@@ -694,13 +673,12 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
   <div class="configurator-inner">
     <div class="config-header reveal">
       <div>
-        <h2 class="sec-label" style="color:rgba(255,255,255,.3);"><span class="n" style="color:var(--sky);">02</span> Criador de Peça</h2>
-        <div class="config-hed">Criar<br>sua peça.</div>
+        <div class="config-hed">Monte<br>sua peça.</div>
       </div>
       <div class="config-desc">
         Escolha o tipo, tamanho, cor do azulejo e do rejunte.
-        Cada combinação é uma decisão de design — sua.<br><br>
-        Vagas limitadas por mês. Prazo padrão: 3 a 4 semanas.
+        Cada combinação é uma decisão de design. Sua.<br><br>
+        Prazo padrão: 3 a 4 semanas.
       </div>
     </div>
 
@@ -708,13 +686,11 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 
       <!-- Preview -->
       <div class="config-preview">
-        <!-- Animated floating tile background -->
-        <div class="preview-float-bg" id="previewFloatBg"></div>
         <!-- SVG Shape Preview -->
         <div class="shape-preview" id="shapePreview">
           <div id="productSvgWrap" style="width:88%;max-width:300px;filter:drop-shadow(0 24px 48px rgba(0,0,0,.35));display:flex;align-items:center;justify-content:center;"></div>
         </div>
-        <div class="preview-label" id="previewLabel">CUBO-M-SKY</div>
+        <div class="preview-label" id="previewLabel">CUBO-M-MARFIM</div>
       </div>
 
       <!-- Controls -->
@@ -737,10 +713,10 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
         <div class="ctrl-section">
           <div class="ctrl-label">Tamanho</div>
           <div class="size-selector" role="group" aria-label="Tamanho">
+            <button class="size-btn" data-size="S">S</button>
             <button class="size-btn" data-size="P">P</button>
             <button class="size-btn active" data-size="M">M</button>
             <button class="size-btn" data-size="G">G</button>
-            <button class="size-btn" data-size="XG">XG</button>
           </div>
           <div style="font-family:'SupremeLL',system-ui,sans-serif;font-weight:400;font-size:12px;color:rgba(255,255,255,.25);margin-top:8px;letter-spacing:0;" id="sizeDims">
             M: ~40×40×40 cm
@@ -751,14 +727,14 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
         <div class="ctrl-section">
           <div class="ctrl-label">Cor do azulejo</div>
           <div class="colour-selector" role="radiogroup" aria-label="Cor do azulejo">
-            <label class="colour-opt"><input type="radio" name="tilecolor" value="SKY" checked data-colour="SKY" data-hex="#A8CCE0" data-label="Sky" data-dark="true"><div class="colour-swatch" style="background:#A8CCE0;"><div class="swatch-check"></div><div class="swatch-name" style="color:#4C2018;">Sky</div></div></label>
+            <label class="colour-opt"><input type="radio" name="tilecolor" value="SKY" data-colour="SKY" data-hex="#A8CCE0" data-label="Sky" data-dark="true"><div class="colour-swatch" style="background:#A8CCE0;"><div class="swatch-check"></div><div class="swatch-name" style="color:#4C2018;">Sky</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="AZUL MÉDIO" data-colour="AZUL MÉDIO" data-hex="#78A0C8" data-label="Azul Médio" data-dark="false"><div class="colour-swatch" style="background:#78A0C8;"><div class="swatch-check"></div><div class="swatch-name" style="color:white;">Azul Médio</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="NAVAL" data-colour="NAVAL" data-hex="#283878" data-label="Naval" data-dark="false"><div class="colour-swatch" style="background:#283878;"><div class="swatch-check"></div><div class="swatch-name" style="color:white;">Naval</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="BRASA" data-colour="BRASA" data-hex="#C22A15" data-label="Brasa" data-dark="false"><div class="colour-swatch" style="background:#C22A15;"><div class="swatch-check"></div><div class="swatch-name" style="color:white;">Brasa</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="RUBI" data-colour="RUBI" data-hex="#6E2028" data-label="Rubi" data-dark="false"><div class="colour-swatch" style="background:#6E2028;"><div class="swatch-check"></div><div class="swatch-name" style="color:white;">Rubi</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="OLIVE" data-colour="OLIVE" data-hex="#85784C" data-label="Olive" data-dark="false"><div class="colour-swatch" style="background:#85784C;"><div class="swatch-check"></div><div class="swatch-name" style="color:white;">Olive</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="BUTTER" data-colour="BUTTER" data-hex="#D4C4A0" data-label="Butter" data-dark="true"><div class="colour-swatch" style="background:#D4C4A0;"><div class="swatch-check"></div><div class="swatch-name" style="color:#4C2018;">Butter</div></div></label>
-            <label class="colour-opt"><input type="radio" name="tilecolor" value="MARFIM" data-colour="MARFIM" data-hex="#C8C4B8" data-label="Marfim" data-dark="true"><div class="colour-swatch" style="background:#C8C4B8;"><div class="swatch-check"></div><div class="swatch-name" style="color:#4C2018;">Marfim</div></div></label>
+            <label class="colour-opt"><input type="radio" name="tilecolor" value="MARFIM" checked data-colour="MARFIM" data-hex="#C8C4B8" data-label="Marfim" data-dark="true"><div class="colour-swatch" style="background:#C8C4B8;"><div class="swatch-check"></div><div class="swatch-name" style="color:#4C2018;">Marfim</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="BEAUFORT" data-colour="BEAUFORT" data-hex="#A4AABF" data-label="Beaufort" data-dark="true"><div class="colour-swatch" style="background:#A4AABF;"><div class="swatch-check"></div><div class="swatch-name" style="color:#4C2018;">Beaufort</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="CAJU" data-colour="CAJU" data-hex="#C87845" data-label="Caju" data-dark="false"><div class="colour-swatch" style="background:#C87845;"><div class="swatch-check"></div><div class="swatch-name" style="color:white;">Caju</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="PÓLVORA" data-colour="PÓLVORA" data-hex="#181818" data-label="Pólvora" data-dark="false"><div class="colour-swatch" style="background:#181818;"><div class="swatch-check"></div><div class="swatch-name" style="color:white;">Pólvora</div></div></label>
@@ -769,7 +745,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
         <div class="ctrl-section">
           <div class="ctrl-label">Cor do rejunte</div>
           <div class="grout-selector" id="groutSelector" role="group" aria-label="Cor do rejunte">
-            <button class="grout-btn active" data-grout="Areia" data-grouthex="#C9B08A">
+            <button class="grout-btn" data-grout="Areia" data-grouthex="#C9B08A">
               <div class="grout-dot" style="background:#C9B08A;"></div>Areia
             </button>
             <button class="grout-btn" data-grout="Branco" data-grouthex="#F0EEE8">
@@ -778,7 +754,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
             <button class="grout-btn" data-grout="Cinza" data-grouthex="#9A9A9A">
               <div class="grout-dot" style="background:#9A9A9A;"></div>Cinza
             </button>
-            <button class="grout-btn" data-grout="Chumbo" data-grouthex="#3C3C3C">
+            <button class="grout-btn active" data-grout="Chumbo" data-grouthex="#3C3C3C">
               <div class="grout-dot" style="background:#3C3C3C;"></div>Chumbo
             </button>
           </div>
@@ -787,11 +763,11 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
         <!-- Summary -->
         <div class="config-summary">
           <div>
-            <div class="summary-sku" id="summarySkU">CUBO-M-SKY</div>
+            <div class="summary-sku" id="summarySkU">CUBO-M-MARFIM</div>
             <div class="summary-lead">Prazo: 3–4 semanas · Azulejo 4,7×4,7</div>
           </div>
           <div>
-            <div class="summary-price" id="summaryPrice">R$890</div>
+            <div class="summary-price" id="summaryPrice">R$1.699</div>
           </div>
         </div>
 
@@ -808,13 +784,9 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 <section id="gallery">
   <div class="gallery-header reveal">
     <div>
-      <h2 class="sec-label"><span class="n">03</span> Galeria</h2>
       <div class="gallery-hed">Em espaços<br>reais.</div>
     </div>
-    <div class="gallery-sub">
-      Cada peça fotografada com luz natural, em interiores reais.<br>
-      O objeto é a presença. O espaço é o contexto.
-    </div>
+    <div class="gallery-sub"></div>
   </div>
 
   <div class="gallery-grid reveal">
@@ -857,10 +829,9 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       <img class="process-img-accent" src="images/misc-30.jpg" loading="lazy" alt="Seleção de azulejos">
     </div>
     <div class="process-content">
-      <h2 class="sec-label"><span class="n">04</span> Processo</h2>
       <div class="process-hed">Como funciona<br>uma encomenda.</div>
       <div class="process-body">
-        Não vendemos de estoque. Cada peça começa numa conversa —
+        Não vendemos de estoque. Cada peça começa numa conversa,
         sobre o espaço, a cor, a escala. O que fazemos em seguida é
         produzir um objeto que não existia antes.
       </div>
@@ -901,7 +872,6 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 <!-- ══════════ TILE SELECTION ══════════ -->
 <section id="tiles">
   <div class="tiles-header reveal">
-    <h2 class="sec-label" style="justify-content:center;"><span class="n">05</span> Azulejos & Rejuntes</h2>
     <div class="tiles-hed">Uma decisão<br>de cor.</div>
     <div class="tiles-sub">
       Todos os colorways estão disponíveis para encomenda.
@@ -927,7 +897,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
     <div class="tile-info-card">
       <div class="tic-num">4,7 × 4,7 cm</div>
       <div class="tic-title">Formato standard</div>
-      <div class="tic-desc">O azulejo pequeno cria uma grade densa e precisa — cada face do objeto tem dezenas de tiles. Efeito grid máximo, mesmo em peças compactas.</div>
+      <div class="tic-desc">O azulejo pequeno cria uma grade densa e precisa. Cada face do objeto tem dezenas de tiles. Efeito grid máximo, mesmo em peças compactas.</div>
     </div>
     <div class="tile-info-card">
       <div class="tic-num">Esmaltado</div>
@@ -937,29 +907,23 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
     <div class="tile-info-card">
       <div class="tic-num">4 opções</div>
       <div class="tic-title">Rejunte como detalhe</div>
-      <div class="tic-desc">O rejunte não é detalhe — é parte do design. Areia, branco, cinza ou chumbo. Cada combinação tile + rejunte resulta em um objeto diferente.</div>
+      <div class="tic-desc">O rejunte não é detalhe, é parte do design. Areia, branco, cinza ou chumbo. Cada combinação tile + rejunte resulta em um objeto diferente.</div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ ABOUT ══════════ -->
-<section id="about">
+<!-- ══════════ STORY ══════════ -->
+<section id="story" style="background:var(--plum);padding:120px 80px;overflow:hidden;">
   <div class="about-grid reveal">
-    <img class="about-img" src="images/about.jpg" alt="Estúdio Lado Studio" loading="lazy" width="600" height="800">
+    <img class="about-img" src="images/nous.jpg" alt="Maité & Louis" loading="lazy" width="800" height="800">
     <div class="about-content">
       <div>
-        <h2 class="sec-label" style="color:rgba(255,255,255,.2);"><span class="n" style="color:var(--sky);">06</span> Sobre</h2>
-        <div class="about-hed">Feito no<br><span class="accent">Rio.</span></div>
+        <div class="about-hed">Como tudo<br><span class="accent">começou.</span></div>
         <div class="about-body">
-          Lado Studio nasceu de um desejo compartilhado — criar algo juntos.
-          Um projeto enraizado em design, artesanato e vida cotidiana.<br><br>
-          Somos Maité e Louis, um casal com formações diferentes e habilidades
-          complementares. O que nos une é uma forte sensibilidade para arte,
-          materiais e cultura visual.<br><br>
-          Vivemos no Rio de Janeiro há dois anos. Durante esse tempo, sentimos
-          repetidamente que havia uma lacuna real na cena local de design de
-          interiores — falta de peças contemporâneas, bem desenhadas e
-          expressivas que trazem caráter e cor para os apartamentos.
+          Somos um casal europeu, belga, que cresceu rodeado por interiores pensados, estéticos e cheios de personalidade. Para nós, o design sempre fez parte do cotidiano.<br><br>
+          A forma de uma mesa, a cor de uma parede, a textura de um material… tudo vira motivo de conversa, pesquisa e debate. Entre nós dois sempre foi assim.<br><br>
+          Há dois anos nos mudamos para o Rio de Janeiro. Uma cidade vibrante, criativa e cheia de energia. Mas, ao mesmo tempo, sentimos falta de algo que sempre fez parte da nossa vida: o cuidado com o design dentro dos espaços.<br><br>
+          Foi assim que o Lado Studio começou. Primeiro criando peças para nós mesmos. Depois para amigos. E, pouco a pouco, percebemos algo simples: adoramos discutir cores, materiais, formas e os pequenos detalhes que transformam uma casa na nossa casa.
         </div>
         <div class="about-sig">
           <div class="about-sig-name">Maité & Louis</div>
@@ -980,8 +944,8 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
 <!-- ══════════ CTA ══════════ -->
 <section id="cta">
   <div class="reveal">
-    <div class="cta-hed">Sua vaga<br><span class="accent">este mês.</span></div>
-    <div class="cta-sub">Vagas limitadas por mês. Quando fecha, fecha. Cada encomenda começa com uma conversa no WhatsApp.</div>
+    <div class="cta-hed">Vamos criar algo<br><span class="accent">juntos.</span></div>
+    <div class="cta-sub">Cada peça começa com uma conversa sobre o espaço, a cor, a escala. Entre em contato e vamos ver o que podemos criar juntos.</div>
     <div class="cta-btns">
       <a href="https://wa.me/5521972240493?text=Olá!%20Vi%20o%20Lado%20Studio%20no%20site%20e%20quero%20saber%20mais%20sobre%20encomendas." class="btn-wpp" target="_blank">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -989,7 +953,6 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       </a>
       <a href="/cdn-cgi/l/email-protection#463234272223062a272229353233222f296825292b" class="btn-trade">Programa Trade</a>
     </div>
-    <div class="cta-slots" id="slotsDisplay">● 4 vagas abertas este mês</div>
   </div>
 </section>
 
@@ -1011,10 +974,9 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       <h4>Navegação</h4>
       <ul>
         <li><a href="#products">Coleção</a></li>
-        <li><a href="#configurator">Encomendar</a></li>
+        <li><a href="#configurator">Monte sua peça</a></li>
         <li><a href="#gallery">Galeria</a></li>
         <li><a href="#process">Processo</a></li>
-        <li><a href="#about">Sobre</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1029,7 +991,6 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© Lado Studio 2026 · Rio de Janeiro · Todos os direitos reservados</div>
-    <div class="footer-tile-mark" id="footerMark"></div>
   </div>
 </footer>
 
@@ -1109,61 +1070,43 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 
-// ── Footer tile mark ──
-const fm = document.getElementById('footerMark');
-if(fm) for(let i=0;i<16;i++){
-  const t=document.createElement('div'); t.className='ftm-tile';
-  if(i===15) t.style.background='transparent';
-  fm.appendChild(t);
-}
 
 // ══════════════════════════════════════════
 // CONFIGURATOR STATE
 // ══════════════════════════════════════════
 let state = {
   type:'CUBO', typeName:'Cubo / Plinto', size:'M',
-  colour:'SKY', colourHex:'#A8CCE0', colourDark:true,
-  grout:'Areia', groutHex:'#C9B08A'
+  colour:'MARFIM', colourHex:'#C8C4B8', colourDark:true,
+  grout:'Chumbo', groutHex:'#3C3C3C'
 };
 
 const prices = {
-  CUBO:   {P:590,  M:890,  G:1350, XG:1890},
-  MESA:   {P:750,  M:1290, G:2100, XG:2900},
-  BANCO:  {P:2100, M:2100, G:2100, XG:2100},
-  HOLDER: {P:290,  M:490,  G:790,  XG:1100},
-  'MÓDULO': {P:2900, M:2900, G:2900, XG:2900},
-  SET:    {P:3900, M:3900, G:3900, XG:3900},
+  CUBO:   {P:1499, M:1699, G:1899},
+  MESA:   {M:2949},
+  BANCO:  {P:2699, M:3199},
+  HOLDER: {S:890},
+  'MÓDULO': {M:2549, G:3199},
+  SET:    {M:6599, G:8499},
+};
+const availableSizes = {
+  CUBO:   ['P','M','G'],
+  MESA:   ['M'],
+  BANCO:  ['P','M'],
+  HOLDER: ['S'],
+  'MÓDULO': ['M','G'],
+  SET:    ['M','G'],
 };
 const dims = {
-  CUBO:   {P:'~25×25×25 cm',  M:'~40×40×40 cm',   G:'~55×55×55 cm',   XG:'~70×70×70 cm'},
-  MESA:   {P:'~60×30×40 cm',  M:'~90×40×45 cm',   G:'~120×50×50 cm',  XG:'~150×60×55 cm'},
-  BANCO:  {P:'90×40×40 cm',  M:'90×40×40 cm',  G:'90×40×40 cm',  XG:'90×40×40 cm'},
-  HOLDER: {P:'~10×10×20 cm',  M:'~15×15×28 cm',   G:'~20×20×36 cm',   XG:'~25×25×44 cm'},
-  'MÓDULO':{P:'100×35×80 cm', M:'100×35×80 cm',   G:'100×35×80 cm',   XG:'100×35×80 cm'},
-  SET:    {P:'120×60×80 cm',  M:'120×60×80 cm',    G:'120×60×80 cm',   XG:'120×60×80 cm'},
+  CUBO:   {P:'~25×25×25 cm',  M:'52×37×37 cm',   G:'92×37×37 cm'},
+  MESA:   {M:'42×93×58 cm'},
+  BANCO:  {P:'~35×100×32 cm', M:'43×124×32 cm'},
+  HOLDER: {S:'15×15×28 cm'},
+  'MÓDULO':{M:'92×99×32 cm', G:'~110×120×32 cm'},
+  SET:    {M:'78×124×63 cm', G:'~85×150×63 cm'},
 };
 
-// ── Floating tile background ──
-function buildFloatBg(hex) {
-  const bg = document.getElementById('previewFloatBg');
-  if(!bg) return;
-  bg.innerHTML = '';
-  const palette = [hex, '#F5EDD8','#B9D0D4','#E8D8C8','#D4C8BC'];
-  for(let i=0;i<22;i++) {
-    const t = document.createElement('div');
-    t.className = 'float-tile';
-    const sz = 14 + Math.random()*24;
-    const x = 5 + Math.random()*90;
-    const y = 20 + Math.random()*70;
-    const dur = 6 + Math.random()*8;
-    const del = Math.random()*8;
-    const rot = -20 + Math.random()*40;
-    const op = 0.08 + Math.random()*0.14;
-    const col = palette[Math.floor(Math.random()*palette.length)];
-    t.style.cssText = `width:${sz}px;height:${sz}px;background:${col};left:${x}%;bottom:${y}%;--dur:${dur}s;--del:${del}s;--rot:${rot}deg;--op:${op};`;
-    bg.appendChild(t);
-  }
-}
+// ── Floating tile background (removed) ──
+function buildFloatBg(hex) { /* removed */ }
 
 // ── Isometric 3D tile helpers ──
 // Isometric projection: x-axis goes right-down at 30°, y-axis goes left-down at 30°, z-axis goes up
@@ -1357,15 +1300,36 @@ function drawSet(tc, gc) {
   return `<g>${lpL}${lpF}${lpR}${rpF}${rpR}${topL}${topF}${topR}${topT}</g>`;
 }
 
+// ── Update available size buttons based on product type ──
+function updateSizeButtons() {
+  const sizes = availableSizes[state.type] || ['M'];
+  document.querySelectorAll('[data-size]').forEach(btn => {
+    const s = btn.dataset.size;
+    if(sizes.includes(s)) {
+      btn.style.display = '';
+      btn.disabled = false;
+    } else {
+      btn.style.display = 'none';
+      btn.disabled = true;
+      btn.classList.remove('active');
+    }
+  });
+  // If current size is not available, pick first available
+  if(!sizes.includes(state.size)) {
+    state.size = sizes[0];
+    document.querySelectorAll('[data-size]').forEach(b => b.classList.remove('active'));
+    const newBtn = document.querySelector(`[data-size="${state.size}"]`);
+    if(newBtn) newBtn.classList.add('active');
+  }
+}
+
 function updatePreview() {
   const tc   = state.colourHex;
   const gc   = state.groutHex;
   const wrap = document.getElementById('productSvgWrap');
   if(!wrap) return;
   let inner = '';
-  // ViewBox offsets per product to center the isometric rendering (includes all faces)
-  // Cube viewBox is dynamic based on size
-  const cubeCmMap = {P:25, M:40, G:55, XG:70};
+  const cubeCmMap = {P:25, M:40, G:55};
   const cubeCm = cubeCmMap[state.size] || 40;
   const cubeTiles = Math.round(cubeCm / 5);
   const cubeS = cubeTiles * 12.5;
@@ -1391,10 +1355,9 @@ function updatePreview() {
   const v = vb[state.type] || vb['CUBO'];
   const pad = 15;
   wrap.innerHTML = `<svg viewBox="${v.x-pad} ${v.y-pad} ${v.w+pad*2} ${v.h+pad*2}" xmlns="http://www.w3.org/2000/svg" style="width:100%;">${inner}</svg>`;
-  buildFloatBg(tc);
 
   const sku   = `${state.type}-${state.size}-${state.colour}`;
-  const price = (prices[state.type] && prices[state.type][state.size]) || 890;
+  const price = (prices[state.type] && prices[state.type][state.size]) || 1699;
   const dim   = (dims[state.type]   && dims[state.type][state.size])   || '';
 
   const elLabel = document.getElementById('previewLabel');
@@ -1414,6 +1377,7 @@ document.querySelectorAll('[data-type]').forEach(btn => {
     state.typeName = this.dataset.typename;
     document.querySelectorAll('[data-type]').forEach(b => b.classList.remove('active'));
     this.classList.add('active');
+    updateSizeButtons();
     updatePreview();
   });
 });
@@ -1421,6 +1385,7 @@ document.querySelectorAll('[data-type]').forEach(btn => {
 // ── Bind size buttons ──
 document.querySelectorAll('[data-size]').forEach(btn => {
   btn.addEventListener('click', function() {
+    if(this.disabled) return;
     state.size = this.dataset.size;
     document.querySelectorAll('[data-size]').forEach(b => b.classList.remove('active'));
     this.classList.add('active');
@@ -1453,7 +1418,7 @@ document.querySelectorAll('[data-grout]').forEach(btn => {
 const configCta = document.getElementById('configCta');
 if(configCta) configCta.addEventListener('click', function() {
   const sku   = `${state.type}-${state.size}-${state.colour}`;
-  const price = (prices[state.type] && prices[state.type][state.size]) || 890;
+  const price = (prices[state.type] && prices[state.type][state.size]) || 1699;
   const dim   = (dims[state.type]   && dims[state.type][state.size])   || '';
   const msg   = encodeURIComponent(`Olá! Vim do site do Lado Studio e quero encomendar:\n\nPeça: ${state.typeName}\nSKU: ${sku}\nDimensões: ${dim}\nCor: ${state.colour}\nRejunte: ${state.grout}\nPreço base: R$${price.toLocaleString('pt-BR')}\n\nPode me dar mais informações?`);
   window.open(`https://wa.me/5521972240493?text=${msg}`, '_blank');
@@ -1495,6 +1460,7 @@ setInterval(() => {
 }, 10000);
 
 // ── Init ──
+updateSizeButtons();
 updatePreview();
 
 
