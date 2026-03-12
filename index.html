@@ -1199,25 +1199,17 @@ function drawCube(tc, gc, size) {
 }
 
 function drawMesa(tc, gc) {
-  // Mesa: 120×60×40 cm — coffee table with 4 tiled legs
-  const w=150, d=75, h=50, legW=14, legD=14, legH=28, topH=22;
-  const oL=6, oD=6;
-  const backLegs = [[oL, d-legD-oD], [w-legW-oL, d-legD-oD]];
-  const frontLegs = [[oL, oD], [w-legW-oL, oD]];
-  let legSvg = '';
-  backLegs.forEach(([lx,ly]) => {
-    legSvg += ISO.tiledFace([lx,ly,h-topH], legW, legH, 1, 2, 'front', tc, gc, 1);
-    legSvg += ISO.tiledFace([lx+legW,ly,h-topH], legD, legH, 1, 2, 'side', tc, gc, 1);
-  });
-  frontLegs.forEach(([lx,ly]) => {
-    legSvg += ISO.tiledFace([lx,ly,h-topH], legW, legH, 1, 2, 'front', tc, gc, 1);
-    legSvg += ISO.tiledFace([lx+legW,ly,h-topH], legD, legH, 1, 2, 'side', tc, gc, 1);
-  });
-  const tLeft  = ISO.tiledFace([0,0,h], d, topH, 4, 1, 'side',  tc, gc, 1);
-  const tFront = ISO.tiledFace([0,0,h], w, topH, 8, 1, 'front', tc, gc, 1);
-  const tRight = ISO.tiledFace([w,0,h], d, topH, 4, 1, 'side',  tc, gc, 1);
-  const tTop   = ISO.tiledFace([0,0,h], w, d,    8, 4, 'top',   tc, gc, 1);
-  return `<g>${legSvg}${tLeft}${tFront}${tRight}${tTop}</g>`;
+  // Coffee Table: 42×93×58 cm (H×W×D) — solid tiled block, no legs
+  const hcm = 42, wcm = 93, dcm = 58;
+  const scale = 2.2;
+  const uw = wcm * scale, ud = dcm * scale, uh = hcm * scale;
+  const tw = Math.round(wcm / 5), td = Math.round(dcm / 5), th = Math.round(hcm / 5);
+  const bottom = ISO.tiledFace([0,0,0], uw, ud, tw, td, 'top',   tc, gc, 1);
+  const left   = ISO.tiledFace([0,0,uh], ud, uh, td, th, 'side',  tc, gc, 1);
+  const front  = ISO.tiledFace([0,0,uh], uw, uh, tw, th, 'front', tc, gc, 1);
+  const right  = ISO.tiledFace([uw,0,uh], ud, uh, td, th, 'side',  tc, gc, 1);
+  const top    = ISO.tiledFace([0,0,uh], uw, ud, tw, td, 'top',   tc, gc, 1);
+  return `<g>${bottom}${left}${front}${right}${top}</g>`;
 }
 
 function drawBanco(tc, gc, size) {
@@ -1354,9 +1346,14 @@ function updatePreview() {
   const bw = Math.round(bsz.wcm/5)*7, bd = Math.round(bsz.dcm/5)*7, bh = Math.round(bsz.hcm/5)*7;
   const bHalfW = bw * 0.866 + 10;
   const bTotalH = (bw + bd) * 0.5 + bh + 15;
+  // Mesa (Coffee Table) viewBox: 42×93×58 cm solid block
+  const mScale = 2.2;
+  const mesaUw = 93 * mScale, mesaUd = 58 * mScale, mesaUh = 42 * mScale;
+  const mesaHalfW = Math.max(mesaUw, mesaUd) * 0.866 + 5;
+  const mesaTotalH = (mesaUw + mesaUd) * 0.5 + mesaUh + 10;
   const vb = {
     'CUBO':  {x:-cubeHalfW, y:-(cuh + 5), w:cubeHalfW * 2, h:cubeH},
-    'MESA':  {x:-80,  y:-65,  w:225, h:193},
+    'MESA':  {x:-mesaHalfW, y:-(mesaUh + 5), w:mesaHalfW * 2, h:mesaTotalH},
     'BANCO': {x:-bHalfW, y:-(bh + 5), w:bHalfW * 2, h:bTotalH},
     'HOLDER':{x:-63,  y:-135, w:126, h:205},
     'MÓDULO':{x:-55,  y:-119, w:183, h:222},
