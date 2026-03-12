@@ -1098,7 +1098,7 @@ const availableSizes = {
   SET:    ['M','G'],
 };
 const dims = {
-  CUBO:   {P:'~25×25×25 cm',  M:'52×37×37 cm',   G:'92×37×37 cm'},
+  CUBO:   {P:'35×37×37 cm',  M:'52×37×37 cm',   G:'92×37×37 cm'},
   MESA:   {M:'42×93×58 cm'},
   BANCO:  {P:'~35×100×32 cm', M:'43×124×32 cm'},
   HOLDER: {S:'15×15×28 cm'},
@@ -1179,16 +1179,22 @@ const ISO = {
 // Viewbox is set so center origin is at (160,140) via a translate in updatePreview
 
 function drawCube(tc, gc, size) {
-  // Cube sizes in cm: P=25, M=40, G=55, XG=70. Tile = 5cm → tiles per side = cm/5
-  const cmMap = {P:25, M:40, G:55, XG:70};
-  const cm = cmMap[size] || 40;
-  const tiles = Math.round(cm / 5);
-  const s = tiles * 12.5; // each tile = 12.5 units so rendering scales with tile count
-  const bottom = ISO.tiledFace([0,0,0], s, s, tiles, tiles, 'top',   tc, gc, 1);
-  const left   = ISO.tiledFace([0,0,s], s, s, tiles, tiles, 'side',  tc, gc, 1);
-  const front  = ISO.tiledFace([0,0,s], s, s, tiles, tiles, 'front', tc, gc, 1);
-  const right  = ISO.tiledFace([s,0,s], s, s, tiles, tiles, 'side',  tc, gc, 1);
-  const top    = ISO.tiledFace([0,0,s], s, s, tiles, tiles, 'top',   tc, gc, 1);
+  // Real dimensions H×W×D in cm per size (height first)
+  // P=35×37×37, M=52×37×37, G=92×37×37. Tile ≈ 5cm
+  const sizeMap = {
+    P: {h:35, w:37, d:37},
+    M: {h:52, w:37, d:37},
+    G: {h:92, w:37, d:37}
+  };
+  const cm = sizeMap[size] || sizeMap.M;
+  const scale = 2.5; // units per cm
+  const uw = cm.w * scale, ud = cm.d * scale, uh = cm.h * scale;
+  const tw = Math.round(cm.w / 5), td = Math.round(cm.d / 5), th = Math.round(cm.h / 5);
+  const bottom = ISO.tiledFace([0,0,0], uw, ud, tw, td, 'top',   tc, gc, 1);
+  const left   = ISO.tiledFace([0,0,uh], ud, uh, td, th, 'side',  tc, gc, 1);
+  const front  = ISO.tiledFace([0,0,uh], uw, uh, tw, th, 'front', tc, gc, 1);
+  const right  = ISO.tiledFace([uw,0,uh], ud, uh, td, th, 'side',  tc, gc, 1);
+  const top    = ISO.tiledFace([0,0,uh], uw, ud, tw, td, 'top',   tc, gc, 1);
   return `<g>${bottom}${left}${front}${right}${top}</g>`;
 }
 
@@ -1330,14 +1336,15 @@ function updatePreview() {
   const wrap = document.getElementById('productSvgWrap');
   if(!wrap) return;
   let inner = '';
-  const cubeCmMap = {P:25, M:40, G:55};
-  const cubeCm = cubeCmMap[state.size] || 40;
-  const cubeTiles = Math.round(cubeCm / 5);
-  const cubeS = cubeTiles * 12.5;
-  const cubeHalfW = cubeS * 0.866 + 5;
-  const cubeH = cubeS * 1.5 + cubeS + 10;
+  // Cube viewBox from real H×W×D
+  const cubeSizeMap = {P:{h:35,w:37,d:37}, M:{h:52,w:37,d:37}, G:{h:92,w:37,d:37}};
+  const cubeCm = cubeSizeMap[state.size] || cubeSizeMap.M;
+  const cScale = 2.5;
+  const cuw = cubeCm.w * cScale, cud = cubeCm.d * cScale, cuh = cubeCm.h * cScale;
+  const cubeHalfW = Math.max(cuw, cud) * 0.866 + 5;
+  const cubeH = (cuw + cud) * 0.5 + cuh + 10;
   const vb = {
-    'CUBO':  {x:-cubeHalfW, y:-(cubeS + 5), w:cubeHalfW * 2, h:cubeH},
+    'CUBO':  {x:-cubeHalfW, y:-(cuh + 5), w:cubeHalfW * 2, h:cubeH},
     'MESA':  {x:-80,  y:-65,  w:225, h:193},
     'BANCO': {x:-114, y:-61,  w:168, h:157},
     'HOLDER':{x:-63,  y:-135, w:126, h:205},
