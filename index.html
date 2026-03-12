@@ -1201,7 +1201,7 @@ function drawCube(tc, gc, size) {
 function drawMesa(tc, gc) {
   // Coffee Table: 42×93×58 cm (H×W×D) — solid tiled block, no legs
   const hcm = 42, wcm = 93, dcm = 58;
-  const scale = 2.2;
+  const scale = 2.8;
   const uw = wcm * scale, ud = dcm * scale, uh = hcm * scale;
   const tw = Math.round(wcm / 5), td = Math.round(dcm / 5), th = Math.round(hcm / 5);
   // 3 outward-facing faces: right side (x=w), back (y=d), top
@@ -1213,94 +1213,75 @@ function drawMesa(tc, gc) {
 
 function drawBanco(tc, gc, size) {
   // Banco real dims H×W×D: P=35×100×32, M=43×124×32
+  // U-shape: two end panels + connecting top slab
   const bancoSizes = {
     P: {hcm:35, wcm:100, dcm:32},
     M: {hcm:43, wcm:124, dcm:32}
   };
   const bcm = bancoSizes[size] || bancoSizes.M;
-  // tile counts: ~5cm per tile, panel thickness = 2 tiles
+  const scale = 3.2;
   const tw = Math.round(bcm.wcm / 5), td = Math.round(bcm.dcm / 5), th = Math.round(bcm.hcm / 5), tp = 2;
-  const t = 7; // units per tile
-  const w = tw * t, d = td * t, h = th * t, pw = tp * t;
-  // Helper: edge line between two 3D points
-  function edge(p1, p2) {
-    const a = ISO.to2D(p1[0],p1[1],p1[2]), b = ISO.to2D(p2[0],p2[1],p2[2]);
-    return `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="${gc}" stroke-width="1.2"/>`;
-  }
-  // Back connecting faces at y=d (after mirror: appears on RIGHT side)
-  const lpBack = ISO.tiledFace([0,d,h], pw, h, tp, th, 'front', tc, gc, 1);
-  const rpBack = ISO.tiledFace([w-pw,d,h], pw, h, tp, th, 'front', tc, gc, 1);
-  const slabB  = ISO.tiledFace([0,d,h], w, pw, tw, tp, 'front', tc, gc, 1);
-  // LEFT PANEL (2 wide × 8 deep × 8 tall)
-  const lpOuter = ISO.tiledFace([0,0,h], d, h, td, th, 'side', tc, gc, 1);
-  const lpInner = ISO.tiledFace([pw,0,h], d, h, td, th, 'side', tc, gc, 1);
-  // RIGHT PANEL (2 wide × 8 deep × 8 tall)
-  const rpInner = ISO.tiledFace([w-pw,0,h], d, h, td, th, 'side', tc, gc, 1);
-  const rpOuter = ISO.tiledFace([w,0,h], d, h, td, th, 'side', tc, gc, 1);
-  // Front connecting faces at y=0 (after mirror: appears on LEFT/prominent side)
-  const lpFront = ISO.tiledFace([0,0,h], pw, h, tp, th, 'front', tc, gc, 1);
-  const rpFront = ISO.tiledFace([w-pw,0,h], pw, h, tp, th, 'front', tc, gc, 1);
-  // TOP SLAB (18 wide × 8 deep × 2 thick)
-  const slabL   = ISO.tiledFace([0,0,h], d, pw, td, tp, 'side', tc, gc, 1);
-  const slabF   = ISO.tiledFace([0,0,h], w, pw, tw, tp, 'front', tc, gc, 1);
-  const slabR   = ISO.tiledFace([w,0,h], d, pw, td, tp, 'side', tc, gc, 1);
-  const slabTop = ISO.tiledFace([0,0,h], w, d, tw, td, 'top', tc, gc, 1);
-  // Edge outlines at y=0 (front — prominent after mirror)
-  const edges =
-    edge([0,0,h],[0,0,0]) + edge([pw,0,h],[pw,0,0]) +
-    edge([w-pw,0,h],[w-pw,0,0]) + edge([w,0,h],[w,0,0]) +
-    edge([0,0,0],[pw,0,0]) + edge([w-pw,0,0],[w,0,0]);
-  return `<g>${lpBack}${rpBack}${slabB}${lpInner}${rpInner}${lpOuter}${lpFront}${rpOuter}${rpFront}${slabL}${slabF}${slabR}${slabTop}${edges}</g>`;
+  const w = bcm.wcm * scale, d = bcm.dcm * scale, h = bcm.hcm * scale, pw = tp * 5 * scale;
+  // Outward-facing faces (x=w, y=d, z=h) + inner left panel
+  const rpSide = ISO.tiledFace([w, 0, h], d, h, td, th, 'side', tc, gc, 1);
+  const lpInner = ISO.tiledFace([pw, 0, h], d, h, td, th, 'side', tc, gc, 1);
+  const lpFront = ISO.tiledFace([0, d, h], pw, h, tp, th, 'front', tc, gc, 1);
+  const rpFront = ISO.tiledFace([w-pw, d, h], pw, h, tp, th, 'front', tc, gc, 1);
+  const slabFront = ISO.tiledFace([0, d, h], w, pw, tw, tp, 'front', tc, gc, 1);
+  const slabTop = ISO.tiledFace([0, 0, h], w, d, tw, td, 'top', tc, gc, 1);
+  return `<g>${rpSide}${lpInner}${lpFront}${rpFront}${slabFront}${slabTop}</g>`;
 }
 
 function drawHolder(tc, gc) {
   // Holder: 15×15×28 cm — tall narrow tiled box
   const s=55, h=120;
-  const left  = ISO.tiledFace([0,0,h], s, h, 3, 6, 'side',  tc, gc, 1);
-  const front = ISO.tiledFace([0,0,h], s, h, 3, 6, 'front', tc, gc, 1);
+  // 3 outward-facing faces: right side (x=s), back (y=s), top
   const right = ISO.tiledFace([s,0,h], s, h, 3, 6, 'side',  tc, gc, 1);
+  const back  = ISO.tiledFace([0,s,h], s, h, 3, 6, 'front', tc, gc, 1);
   const top   = ISO.tiledFace([0,0,h], s, s, 3, 3, 'top',   tc, gc, 1);
-  return `<g>${left}${front}${right}${top}</g>`;
+  return `<g>${right}${back}${top}</g>`;
 }
 
-function drawModulo(tc, gc) {
-  // Buffet Alto: 100×35×80 cm — U-shaped console
-  const w=130, d=46, h=104, panelW=12;
-  // Left side panel
-  const lpL = ISO.tiledFace([0,0,h-panelW], d, h-panelW, 3, 6, 'side', tc, gc, 1);
-  const lpF = ISO.tiledFace([0,0,h-panelW], panelW, h-panelW, 1, 6, 'front', tc, gc, 1);
-  const lpR = ISO.tiledFace([panelW,0,h-panelW], d, h-panelW, 3, 6, 'side', tc, gc, 1);
-  // Right side panel
-  const rpF = ISO.tiledFace([w-panelW,0,h-panelW], panelW, h-panelW, 1, 6, 'front', tc, gc, 1);
-  const rpR = ISO.tiledFace([w,0,h-panelW], d, h-panelW, 3, 6, 'side', tc, gc, 1);
-  // Top slab
-  const topL = ISO.tiledFace([0,0,h], d, panelW, 3, 1, 'side', tc, gc, 1);
-  const topF = ISO.tiledFace([0,0,h], w, panelW, 9, 1, 'front', tc, gc, 1);
-  const topR = ISO.tiledFace([w,0,h], d, panelW, 3, 1, 'side', tc, gc, 1);
-  const topT = ISO.tiledFace([0,0,h], w, d, 9, 3, 'top', tc, gc, 1);
-  return `<g>${lpL}${lpF}${lpR}${rpF}${rpR}${topL}${topF}${topR}${topT}</g>`;
+function drawModulo(tc, gc, size) {
+  // Buffet Alto U-shape: two side panels + top slab
+  // Real dims H×W×D: M=92×99×32, G=110×120×32
+  const moduloSizes = {
+    M: {hcm:92, wcm:99, dcm:32},
+    G: {hcm:110, wcm:120, dcm:32}
+  };
+  const mcm = moduloSizes[size] || moduloSizes.M;
+  const scale = 3.0;
+  const tw = Math.round(mcm.wcm / 5), td = Math.round(mcm.dcm / 5), th = Math.round(mcm.hcm / 5), tp = 2;
+  const w = mcm.wcm * scale, d = mcm.dcm * scale, h = mcm.hcm * scale, pw = tp * 5 * scale;
+  // Outward-facing faces (x=w, y=d, z=h) — U-shape
+  const rpSide = ISO.tiledFace([w, 0, h], d, h, td, th, 'side', tc, gc, 1);
+  const lpInner = ISO.tiledFace([pw, 0, h], d, h, td, th, 'side', tc, gc, 1);
+  const lpFront = ISO.tiledFace([0, d, h], pw, h, tp, th, 'front', tc, gc, 1);
+  const rpFront = ISO.tiledFace([w-pw, d, h], pw, h, tp, th, 'front', tc, gc, 1);
+  const slabFront = ISO.tiledFace([0, d, h], w, pw, tw, tp, 'front', tc, gc, 1);
+  const slabTop = ISO.tiledFace([0, 0, h], w, d, tw, td, 'top', tc, gc, 1);
+  return `<g>${rpSide}${lpInner}${lpFront}${rpFront}${slabFront}${slabTop}</g>`;
 }
 
-function drawSet(tc, gc) {
-  // Bureau / Desk: 120×60×80 cm — U-shaped desk
-  // 5cm per tile: 24 wide × 12 deep × 16 tall, panel = 1 tile thick
-  const t = 7; // units per tile
-  const tw = 24, td = 12, th = 16, tp = 1; // tile counts: width, depth, height, panel thickness
-  const w = tw * t, d = td * t, h = th * t, panelW = tp * t;
-  const legH = (th - tp) * t; // panel height in units (15 tiles)
-  // Left side panel
-  const lpL = ISO.tiledFace([0,0,h-panelW], d, legH, td, th-tp, 'side', tc, gc, 1);
-  const lpF = ISO.tiledFace([0,0,h-panelW], panelW, legH, tp, th-tp, 'front', tc, gc, 1);
-  const lpR = ISO.tiledFace([panelW,0,h-panelW], d, legH, td, th-tp, 'side', tc, gc, 1);
-  // Right side panel
-  const rpF = ISO.tiledFace([w-panelW,0,h-panelW], panelW, legH, tp, th-tp, 'front', tc, gc, 1);
-  const rpR = ISO.tiledFace([w,0,h-panelW], d, legH, td, th-tp, 'side', tc, gc, 1);
-  // Top slab (1 tile thick)
-  const topL = ISO.tiledFace([0,0,h], d, panelW, td, tp, 'side', tc, gc, 1);
-  const topF = ISO.tiledFace([0,0,h], w, panelW, tw, tp, 'front', tc, gc, 1);
-  const topR = ISO.tiledFace([w,0,h], d, panelW, td, tp, 'side', tc, gc, 1);
-  const topT = ISO.tiledFace([0,0,h], w, d, tw, td, 'top', tc, gc, 1);
-  return `<g>${lpL}${lpF}${lpR}${rpF}${rpR}${topL}${topF}${topR}${topT}</g>`;
+function drawSet(tc, gc, size) {
+  // Bureau / Desk U-shape: two side panels + top slab
+  // Real dims H×W×D: M=78×124×63, G=85×150×63
+  const setSizes = {
+    M: {hcm:78, wcm:124, dcm:63},
+    G: {hcm:85, wcm:150, dcm:63}
+  };
+  const scm = setSizes[size] || setSizes.M;
+  const scale = 2.5;
+  const tw = Math.round(scm.wcm / 5), td = Math.round(scm.dcm / 5), th = Math.round(scm.hcm / 5), tp = 2;
+  const w = scm.wcm * scale, d = scm.dcm * scale, h = scm.hcm * scale, pw = tp * 5 * scale;
+  // Outward-facing faces (x=w, y=d, z=h) — U-shape
+  const rpSide = ISO.tiledFace([w, 0, h], d, h, td, th, 'side', tc, gc, 1);
+  const lpInner = ISO.tiledFace([pw, 0, h], d, h, td, th, 'side', tc, gc, 1);
+  const lpFront = ISO.tiledFace([0, d, h], pw, h, tp, th, 'front', tc, gc, 1);
+  const rpFront = ISO.tiledFace([w-pw, d, h], pw, h, tp, th, 'front', tc, gc, 1);
+  const slabFront = ISO.tiledFace([0, d, h], w, pw, tw, tp, 'front', tc, gc, 1);
+  const slabTop = ISO.tiledFace([0, 0, h], w, d, tw, td, 'top', tc, gc, 1);
+  return `<g>${rpSide}${lpInner}${lpFront}${rpFront}${slabFront}${slabTop}</g>`;
 }
 
 // ── Update available size buttons based on product type ──
@@ -1339,32 +1320,43 @@ function updatePreview() {
   const cuw = cubeCm.w * cScale, cud = cubeCm.d * cScale, cuh = cubeCm.h * cScale;
   const cubeHalfW = Math.max(cuw, cud) * 0.866 + 5;
   const cubeH = (cuw + cud) * 0.5 + cuh + 10;
-  // Banco viewBox dynamic per size
-  const bancoSzMap = {P:{hcm:35,wcm:100,dcm:32}, M:{hcm:43,wcm:124,dcm:32}};
-  const bsz = bancoSzMap[state.size] || bancoSzMap.M;
-  const bw = Math.round(bsz.wcm/5)*7, bd = Math.round(bsz.dcm/5)*7, bh = Math.round(bsz.hcm/5)*7;
-  const bHalfW = bw * 0.866 + 10;
-  const bTotalH = (bw + bd) * 0.5 + bh + 15;
-  // Mesa (Coffee Table) viewBox: 42×93×58 cm solid block
-  const mScale = 2.2;
+  // Banco viewBox fixed to M size, tight bounding box after mirror
+  const bScale = 3.2;
+  const bw = 124 * bScale, bd = 32 * bScale, bh = 43 * bScale;
+  // After scale(-1,1): bench spans x from -bw*0.866 to +bd*0.866, y from -bh to +(bw+bd)*0.5
+  const bLeft = -bw * 0.866, bRight = bd * 0.866;
+  const bTop = -bh, bBottom = (bw + bd) * 0.5;
+  // Mesa (Coffee Table) viewBox: 42×93×58 cm solid block, tight bounding box
+  const mScale = 2.8;
   const mesaUw = 93 * mScale, mesaUd = 58 * mScale, mesaUh = 42 * mScale;
-  const mesaHalfW = Math.max(mesaUw, mesaUd) * 0.866 + 5;
-  const mesaTotalH = (mesaUw + mesaUd) * 0.5 + mesaUh + 10;
+  // No mirror: x from -mesaUd*0.866 to +mesaUw*0.866, y from -mesaUh to +(mesaUw+mesaUd)*0.5
+  const mLeft = -mesaUd * 0.866, mRight = mesaUw * 0.866;
+  const mTop = -mesaUh, mBottom = (mesaUw + mesaUd) * 0.5;
+  // Módulo (Buffet) viewBox fixed to G, tight bounding box, no mirror
+  const moScale = 3.0;
+  const moW = 120 * moScale, moD = 32 * moScale, moH = 110 * moScale;
+  const moLeft = -moD * 0.866, moRight = moW * 0.866;
+  const moTop = -moH, moBottom = (moW + moD) * 0.5;
+  // Set (Desk) viewBox fixed to G, tight bounding box, no mirror
+  const sScale = 2.5;
+  const sW = 150 * sScale, sD = 63 * sScale, sH = 85 * sScale;
+  const sLeft = -sD * 0.866, sRight = sW * 0.866;
+  const sTop = -sH, sBottom = (sW + sD) * 0.5;
   const vb = {
     'CUBO':  {x:-cubeHalfW, y:-(cuh + 5), w:cubeHalfW * 2, h:cubeH},
-    'MESA':  {x:-mesaHalfW, y:-(mesaUh + 5), w:mesaHalfW * 2, h:mesaTotalH},
-    'BANCO': {x:-bHalfW, y:-(bh + 5), w:bHalfW * 2, h:bTotalH},
+    'MESA':  {x:mLeft, y:mTop, w:mRight - mLeft, h:mBottom - mTop},
+    'BANCO': {x:bLeft, y:bTop, w:bRight - bLeft, h:bBottom - bTop},
     'HOLDER':{x:-63,  y:-135, w:126, h:205},
-    'MÓDULO':{x:-55,  y:-119, w:183, h:222},
-    'SET':   {x:-78,  y:-117, w:229, h:248},
+    'MÓDULO':{x:moLeft, y:moTop, w:moRight - moLeft, h:moBottom - moTop},
+    'SET':   {x:sLeft, y:sTop, w:sRight - sLeft, h:sBottom - sTop},
   };
   switch(state.type) {
     case 'CUBO':    inner = drawCube(tc, gc, state.size);   break;
     case 'MESA':    inner = drawMesa(tc, gc);   break;
     case 'BANCO':   inner = `<g transform="scale(-1,1)">${drawBanco(tc, gc, state.size)}</g>`;  break;
     case 'HOLDER':  inner = drawHolder(tc, gc); break;
-    case 'MÓDULO':  inner = drawModulo(tc, gc); break;
-    case 'SET':     inner = drawSet(tc, gc);    break;
+    case 'MÓDULO':  inner = drawModulo(tc, gc, state.size); break;
+    case 'SET':     inner = drawSet(tc, gc, state.size);    break;
     default:        inner = drawCube(tc, gc, state.size);
   }
   const v = vb[state.type] || vb['CUBO'];
