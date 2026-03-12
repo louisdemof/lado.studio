@@ -702,11 +702,11 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
           <div class="ctrl-label">Tipo de peça</div>
           <div class="type-selector" role="group" aria-label="Tipo de peça">
             <button class="type-btn active" data-type="CUBO" data-typename="Cubo / Plinto">Cubo</button>
-            <button class="type-btn" data-type="MESA" data-typename="Mesa lateral">Mesa</button>
+            <button class="type-btn" data-type="MESA" data-typename="Coffee Table">Coffee Table</button>
             <button class="type-btn" data-type="BANCO" data-typename="Banco">Banco</button>
             <button class="type-btn" data-type="HOLDER" data-typename="Holder">Holder</button>
             <button class="type-btn" data-type="MÓDULO" data-typename="Buffet Alto">Buffet</button>
-            <button class="type-btn" data-type="SET" data-typename="Bureau">Bureau</button>
+            <button class="type-btn" data-type="SET" data-typename="Desk">Desk</button>
           </div>
         </div>
 
@@ -1220,11 +1220,16 @@ function drawMesa(tc, gc) {
   return `<g>${legSvg}${tLeft}${tFront}${tRight}${tTop}</g>`;
 }
 
-function drawBanco(tc, gc) {
-  // Banco: 90×40×40 cm — inverted U shape
-  // 5cm tiles: 18w × 8d × 8h total, panels = 2 tiles thick × 8 tiles tall
-  const t = 7;
-  const tw = 18, td = 8, th = 8, tp = 2;
+function drawBanco(tc, gc, size) {
+  // Banco real dims H×W×D: P=35×100×32, M=43×124×32
+  const bancoSizes = {
+    P: {hcm:35, wcm:100, dcm:32},
+    M: {hcm:43, wcm:124, dcm:32}
+  };
+  const bcm = bancoSizes[size] || bancoSizes.M;
+  // tile counts: ~5cm per tile, panel thickness = 2 tiles
+  const tw = Math.round(bcm.wcm / 5), td = Math.round(bcm.dcm / 5), th = Math.round(bcm.hcm / 5), tp = 2;
+  const t = 7; // units per tile
   const w = tw * t, d = td * t, h = th * t, pw = tp * t;
   // Helper: edge line between two 3D points
   function edge(p1, p2) {
@@ -1343,10 +1348,16 @@ function updatePreview() {
   const cuw = cubeCm.w * cScale, cud = cubeCm.d * cScale, cuh = cubeCm.h * cScale;
   const cubeHalfW = Math.max(cuw, cud) * 0.866 + 5;
   const cubeH = (cuw + cud) * 0.5 + cuh + 10;
+  // Banco viewBox dynamic per size
+  const bancoSzMap = {P:{hcm:35,wcm:100,dcm:32}, M:{hcm:43,wcm:124,dcm:32}};
+  const bsz = bancoSzMap[state.size] || bancoSzMap.M;
+  const bw = Math.round(bsz.wcm/5)*7, bd = Math.round(bsz.dcm/5)*7, bh = Math.round(bsz.hcm/5)*7;
+  const bHalfW = bw * 0.866 + 10;
+  const bTotalH = (bw + bd) * 0.5 + bh + 15;
   const vb = {
     'CUBO':  {x:-cubeHalfW, y:-(cuh + 5), w:cubeHalfW * 2, h:cubeH},
     'MESA':  {x:-80,  y:-65,  w:225, h:193},
-    'BANCO': {x:-114, y:-61,  w:168, h:157},
+    'BANCO': {x:-bHalfW, y:-(bh + 5), w:bHalfW * 2, h:bTotalH},
     'HOLDER':{x:-63,  y:-135, w:126, h:205},
     'MÓDULO':{x:-55,  y:-119, w:183, h:222},
     'SET':   {x:-78,  y:-117, w:229, h:248},
@@ -1354,7 +1365,7 @@ function updatePreview() {
   switch(state.type) {
     case 'CUBO':    inner = drawCube(tc, gc, state.size);   break;
     case 'MESA':    inner = drawMesa(tc, gc);   break;
-    case 'BANCO':   inner = `<g transform="scale(-1,1)">${drawBanco(tc, gc)}</g>`;  break;
+    case 'BANCO':   inner = `<g transform="scale(-1,1)">${drawBanco(tc, gc, state.size)}</g>`;  break;
     case 'HOLDER':  inner = drawHolder(tc, gc); break;
     case 'MÓDULO':  inner = drawModulo(tc, gc); break;
     case 'SET':     inner = drawSet(tc, gc);    break;
