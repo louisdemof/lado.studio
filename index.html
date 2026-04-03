@@ -1290,7 +1290,33 @@ function drawCachepo(tc, gc, size) {
   const topFront = ISO.tiledFace([0, d-pw, h], w, pw, tw, tp, 'top', tc, gc, 1);
   const topRight = ISO.tiledFace([w-pw, pw, h], pw, d-2*pw, tp, td-2*tp, 'top', tc, gc, 1);
   const topLeft  = ISO.tiledFace([0, pw, h], pw, d-2*pw, tp, td-2*tp, 'top', tc, gc, 1);
-  return `<g>${rpSide}${backF}${rpInner}${bkInner}${topBack}${topFront}${topRight}${topLeft}</g>`;
+  // Tropical plant (Monstera-style leaves + stems) growing from inside the pot
+  const cx = w/2, cy = d/2; // center of pot in 3D
+  const p0 = ISO.to2D(cx, cy, h); // center of pot opening in 2D
+  const ps = cs.cm / 50; // plant scale factor relative to M size
+  const plant = `
+    <g transform="translate(${p0.x.toFixed(1)},${p0.y.toFixed(1)}) scale(${ps})">
+      <!-- stems -->
+      <path d="M0,0 C-5,-30 -15,-60 -40,-100" fill="none" stroke="#3a6b35" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M0,0 C10,-25 25,-55 20,-105" fill="none" stroke="#3a6b35" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M0,0 C-8,-20 5,-50 45,-85" fill="none" stroke="#3a6b35" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0,0 C5,-15 -10,-40 -10,-75" fill="none" stroke="#3a6b35" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0,0 C-3,-10 15,-35 35,-55" fill="none" stroke="#3a6b35" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- large monstera leaf back-left -->
+      <path d="M-40,-100 C-55,-115 -75,-110 -80,-95 C-82,-85 -70,-80 -60,-85 C-55,-75 -65,-65 -55,-60 C-50,-58 -42,-65 -38,-75 C-30,-70 -25,-78 -30,-88 C-25,-92 -30,-100 -40,-100Z" fill="#4a8c3f" opacity="0.9"/>
+      <path d="M-40,-100 C-45,-85 -48,-72 -45,-62" fill="none" stroke="#3a6b35" stroke-width="1" opacity="0.6"/>
+      <!-- large leaf back-right -->
+      <path d="M20,-105 C15,-120 25,-135 40,-130 C50,-126 48,-115 40,-112 C48,-105 55,-108 52,-98 C50,-92 42,-90 35,-95 C30,-88 35,-80 28,-78 C22,-76 18,-85 20,-95 C15,-92 12,-98 20,-105Z" fill="#5a9e4b" opacity="0.9"/>
+      <path d="M20,-105 C28,-95 32,-85 30,-78" fill="none" stroke="#3a6b35" stroke-width="1" opacity="0.6"/>
+      <!-- medium leaf right -->
+      <path d="M45,-85 C55,-95 70,-92 72,-80 C73,-72 65,-70 58,-74 C58,-66 50,-62 48,-68 C42,-65 38,-72 45,-80Z" fill="#5a9e4b" opacity="0.85"/>
+      <path d="M45,-85 C50,-76 50,-68 48,-63" fill="none" stroke="#3a6b35" stroke-width="0.8" opacity="0.5"/>
+      <!-- small leaf center -->
+      <path d="M-10,-75 C-18,-88 -12,-100 -2,-95 C4,-92 2,-84 -4,-82 C0,-76 -5,-72 -8,-76Z" fill="#6aae5a" opacity="0.85"/>
+      <!-- small accent leaf right -->
+      <path d="M35,-55 C42,-62 52,-58 50,-48 C48,-42 40,-44 38,-48Z" fill="#6aae5a" opacity="0.8"/>
+    </g>`;
+  return `<g>${rpSide}${backF}${rpInner}${bkInner}${plant}${topBack}${topFront}${topRight}${topLeft}</g>`;
 }
 
 function drawModulo(tc, gc, size) {
@@ -1397,7 +1423,7 @@ function updatePreview() {
     'CUBO':  {x:-cubeHalfW, y:-(cuh + 5), w:cubeHalfW * 2, h:cubeH},
     'MESA':  {x:mLeft, y:mTop, w:mRight - mLeft, h:mBottom - mTop},
     'BANCO': {x:bLeft, y:bTop, w:bRight - bLeft, h:bBottom - bTop},
-    'CACHEPÔ':{x:-180, y:-200, w:360, h:340},
+    'CACHEPÔ':{x:-180, y:-320, w:400, h:480},
     'MÓDULO':{x:moLeft, y:moTop, w:moRight - moLeft, h:moBottom - moTop},
     'SET':   {x:sLeft, y:sTop, w:sRight - sLeft, h:sBottom - sTop},
   };
