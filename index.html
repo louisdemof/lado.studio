@@ -587,7 +587,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
           <div class="pcolor" style="background:#FDFAF5;border-color:#ccc;" title="Marfim"></div>
         </div>
         <div class="pi-price">A partir de R$1.499</div>
-        <a class="pi-customise" href="#configurator">Personalizar →</a>
+        <a class="pi-customise" href="#configurator" data-product-type="CUBO">Personalizar →</a>
       </div>
     </div>
 
@@ -605,7 +605,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
           <div class="pcolor" style="background:#C22A15;" title="Brasa"></div>
         </div>
         <div class="pi-price">A partir de R$1.590</div>
-        <a class="pi-customise" href="#configurator">Personalizar →</a>
+        <a class="pi-customise" href="#configurator" data-product-type="CACHEPÔ">Personalizar →</a>
       </div>
     </div>
   </div>
@@ -627,7 +627,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
           <div class="pcolor" style="background:#F5EDD8;" title="Butter"></div>
         </div>
         <div class="pi-price">A partir de R$2.699</div>
-        <a class="pi-customise" href="#configurator">Personalizar →</a>
+        <a class="pi-customise" href="#configurator" data-product-type="BANCO">Personalizar →</a>
       </div>
     </div>
 
@@ -645,7 +645,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
           <div class="pcolor" style="background:#C22A15;" title="Brasa"></div>
         </div>
         <div class="pi-price">A partir de R$2.949</div>
-        <a class="pi-customise" href="#configurator">Personalizar →</a>
+        <a class="pi-customise" href="#configurator" data-product-type="MESA">Personalizar →</a>
       </div>
     </div>
 
@@ -665,7 +665,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
           <div class="pcolor" style="background:#FDFAF5;border-color:#ccc;" title="Marfim"></div>
         </div>
         <div class="pi-price">A partir de R$3.199</div>
-        <a class="pi-customise" href="#configurator">Personalizar →</a>
+        <a class="pi-customise" href="#configurator" data-product-type="MÓDULO">Personalizar →</a>
       </div>
     </div>
     <div class="product-card" onclick="openLightbox('images/lado-studio-concrete-desk.jpg')">
@@ -681,7 +681,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
           <div class="pcolor" style="background:#FDFAF5;border-color:#ccc;" title="Marfim"></div>
         </div>
         <div class="pi-price">A partir de R$5.390</div>
-        <a class="pi-customise" href="#configurator">Personalizar →</a>
+        <a class="pi-customise" href="#configurator" data-product-type="SET">Personalizar →</a>
       </div>
     </div>
     <!-- Cubo G hidden for now
@@ -1475,6 +1475,16 @@ function updatePreview() {
   if(elPrice) elPrice.textContent = `R$${price.toLocaleString('pt-BR')}`;
   if(elDims)  elDims.textContent  = `${state.size}: ${dim}`;
 }
+
+// ── Personalizar links select product type in configurator ──
+document.querySelectorAll('.pi-customise[data-product-type]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const type = this.dataset.productType;
+    const btn = document.querySelector(`[data-type="${type}"]`);
+    if (btn) btn.click();
+  });
+});
 
 // ── Bind type buttons ──
 document.querySelectorAll('[data-type]').forEach(btn => {
