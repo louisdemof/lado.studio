@@ -247,7 +247,7 @@ h2.sec-label{margin:0;font-size:inherit;}
 .size-btn.active{background:var(--butter);color:var(--plum);}
 
 /* Colour selector */
-.colour-selector{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.colour-selector{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
 .colour-opt{position:relative;cursor:pointer;}
 .colour-opt input{position:absolute;opacity:0;width:0;height:0;}
 .colour-swatch{
@@ -287,9 +287,9 @@ h2.sec-label{margin:0;font-size:inherit;}
 .gallery-hed{font-family:var(--font-display);font-weight:900;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1;color:var(--plum);}
 .gallery-sub{font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1.8;color:var(--mid);}
 
-.gallery-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto;gap:3px;}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
 .g-item{overflow:hidden;position:relative;cursor:pointer;}
-.g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94);}
+.g-item img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94);}
 .g-item:hover img{transform:scale(1.06);}
 .g-item.tall{grid-row:span 2;}
 .g-item.wide{grid-column:span 2;}
@@ -319,7 +319,7 @@ h2.sec-label{margin:0;font-size:inherit;}
 .tiles-hed{font-family:var(--font-display);font-weight:900;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1;color:var(--plum);}
 .tiles-sub{font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1.8;color:var(--mid);margin-top:16px;}
 
-.tile-palette{display:grid;grid-template-columns:repeat(11,1fr);gap:3px;margin-top:48px;}
+.tile-palette{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;margin-top:48px;}
 .tile-item{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;}
 .tile-swatch{aspect-ratio:1;width:100%;border:2px solid transparent;transition:all .2s;}
 .tile-item:hover .tile-swatch{border-color:var(--plum);transform:scale(1.05);}
@@ -400,7 +400,7 @@ footer{background:var(--ink);padding:64px 80px;}
   .gallery-header,.about-grid,.process-grid,.footer-inner{grid-template-columns:1fr;}
   .tile-palette{grid-template-columns:repeat(4,1fr);}
   .tile-info-row{grid-template-columns:1fr;}
-  .colour-selector{grid-template-columns:repeat(3,1fr);}
+  .colour-selector{grid-template-columns:repeat(4,1fr);}
   .type-selector{grid-template-columns:repeat(3,1fr);}
 }
 
@@ -451,7 +451,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
   .hero-overlay{padding:0 20px 36px;}
   .cta-btns{flex-direction:column;align-items:center;}
   .config-controls{padding:24px;}
-  .colour-selector{grid-template-columns:repeat(3,1fr);}
+  .colour-selector{grid-template-columns:repeat(4,1fr);}
 }
 </style>
 <script type="application/ld+json">
@@ -780,6 +780,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
             <label class="colour-opt"><input type="radio" name="tilecolor" value="BEAUFORT" data-colour="BEAUFORT" data-hex="#A4AABF" data-label="Beaufort" data-dark="true"><div class="colour-swatch" style="background:#A4AABF;"><div class="swatch-check"></div><div class="swatch-name" style="color:#4C2018;">Beaufort</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="CAJU" data-colour="CAJU" data-hex="#C87845" data-label="Caju" data-dark="false"><div class="colour-swatch" style="background:#C87845;"><div class="swatch-check"></div><div class="swatch-name" style="color:white;">Caju</div></div></label>
             <label class="colour-opt"><input type="radio" name="tilecolor" value="PRETO" data-colour="PRETO" data-hex="#181818" data-label="Preto" data-dark="false"><div class="colour-swatch" style="background:#181818;"><div class="swatch-check"></div><div class="swatch-name" style="color:white;">Preto</div></div></label>
+            <label class="colour-opt"><input type="radio" name="tilecolor" value="LIMONCELLO" data-colour="LIMONCELLO" data-hex="#F5E6A3" data-label="Limoncello" data-dark="true"><div class="colour-swatch" style="background:#F5E6A3;"><div class="swatch-check"></div><div class="swatch-name" style="color:#4C2018;">Limoncello</div></div></label>
           </div>
         </div>
 
@@ -856,21 +857,15 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
   </div>
 
   <div class="gallery-grid reveal">
-    <div class="g-item tall wide" onclick="openLightbox('images/gallery-15.jpg')">
+    <div class="g-item" onclick="openLightbox('images/gallery-15.jpg')">
       <img src="images/gallery-15.jpg" loading="lazy" alt="Cubo azul com girassóis">
       <div class="g-item-label"><span>Cubo M · Sky</span></div>
     </div>
-    <!-- gallery-17 hidden for now
-    <div class="g-item" onclick="openLightbox('images/gallery-17.jpg')">
-      <img src="images/gallery-17.jpg" loading="lazy" alt="Cubo menta com laranja">
-      <div class="g-item-label"><span>Cubo · Detalhe</span></div>
-    </div>
-    -->
     <div class="g-item" onclick="openLightbox('images/gallery-19.jpg')">
       <img src="images/gallery-19.jpg" loading="lazy" alt="Vasos verde e rosa">
       <div class="g-item-label"><span>Cachepôs · Lima + Rosa</span></div>
     </div>
-    <div class="g-item wide" onclick="openLightbox('images/lado-studio-concrete-cube-outdoor.jpg')">
+    <div class="g-item" onclick="openLightbox('images/lado-studio-concrete-cube-outdoor.jpg')">
       <img src="images/lado-studio-concrete-cube-outdoor.jpg" loading="lazy" alt="Lado Studio Concrete Cube Planter in Outdoor Setting">
       <div class="g-item-label"><span>Cubo · Outdoor</span></div>
     </div>
@@ -959,6 +954,7 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
     <div class="tile-item"><div class="tile-swatch" style="background:#A4AABF;"></div><div class="tile-name">Beaufort</div></div>
     <div class="tile-item"><div class="tile-swatch" style="background:#C87845;"></div><div class="tile-name">Caju</div></div>
     <div class="tile-item"><div class="tile-swatch" style="background:#181818;"></div><div class="tile-name">Preto</div></div>
+    <div class="tile-item"><div class="tile-swatch" style="background:#F5E6A3;border:1px solid #ccc;"></div><div class="tile-name">Limoncello</div></div>
   </div>
 
   <div class="tile-info-row reveal">
@@ -973,9 +969,9 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
       <div class="tic-desc">Superfície esmaltada captura a luz e cria reflexos suaves. Mais resistente a manchas. Fácil de limpar. Indicado para uso em interiores com apoio leve.</div>
     </div>
     <div class="tile-info-card">
-      <div class="tic-num">4 opções</div>
+      <div class="tic-num">12 opções</div>
       <div class="tic-title">Rejunte como detalhe</div>
-      <div class="tic-desc">O rejunte não é detalhe, é parte do design. Areia, branco, cinza ou chumbo. Cada combinação tile + rejunte resulta em um objeto diferente.</div>
+      <div class="tic-desc">O rejunte não é detalhe, é parte do design. De areia a bordô, passando por mostarda, verde musgo e terracota. Cada combinação tile + rejunte resulta em um objeto diferente.</div>
     </div>
   </div>
 </section>
