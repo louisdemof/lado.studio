@@ -456,6 +456,23 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
   .config-controls{padding:24px;}
   .colour-selector{grid-template-columns:repeat(4,1fr);}
 }
+
+/* ── FAQ ── */
+#faq{background:var(--white);padding:120px 80px;}
+.faq-header{text-align:center;max-width:600px;margin:0 auto 64px;}
+.faq-hed{font-family:var(--font-display);font-weight:900;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1;color:var(--plum);}
+.faq-sub{font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1.8;color:var(--mid);margin-top:16px;}
+.faq-list{max-width:800px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--fog);}
+.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;padding:24px 0;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--font-display);font-weight:900;font-size:16px;color:var(--plum);letter-spacing:-.01em;transition:color .2s;}
+.faq-question:hover{color:var(--brasa);}
+.faq-icon{font-family:var(--font-display);font-weight:900;font-size:20px;color:var(--brasa);transition:transform .3s;flex-shrink:0;margin-left:16px;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0;}
+.faq-answer p{font-family:var(--font-body);font-weight:400;font-size:15px;line-height:1.8;color:var(--mid);padding:0 0 24px;}
+@media(max-width:900px){
+  #faq{padding:80px 24px;}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -480,6 +497,171 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
     {"@type": "Person", "name": "Louis"}
   ]
 }
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qual o prazo de entrega de uma peça do Lado Studio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O prazo padrão de produção é de 3 a 4 semanas a partir da confirmação do sinal de 50%. A entrega pode ser feita no Rio de Janeiro ou enviada para todo o Brasil, com frete por conta do comprador."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "De que material são feitas as peças?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As peças são feitas em concreto revestido com azulejo esmaltado artesanal de 4,7×4,7 cm. O acabamento é brilhante, resistente a manchas e fácil de limpar. Indicado para uso em interiores."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso escolher a cor do azulejo e do rejunte?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Oferecemos 12 cores de azulejo (Sky, Azul Médio, Naval, Brasa, Rubi, Olive, Butter, Marfim, Beaufort, Caju, Preto e Limoncello) e 12 opções de rejunte. Cada combinação gera um resultado visual único."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quais peças o Lado Studio produz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Produzimos cubos (mesa lateral/plinto), cachepôs, bancos, coffee tables, buffets e desks. Todos sob encomenda, em diferentes tamanhos. Peças personalizadas também podem ser discutidas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como funciona o processo de encomenda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O processo tem 4 etapas: (1) conversa via WhatsApp sobre o espaço e preferências, (2) proposta formal com valor e prazo, (3) sinal de 50% para iniciar a produção, e (4) saldo antes do envio com foto da peça finalizada para aprovação."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vocês entregam fora do Rio de Janeiro?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim, enviamos para todo o Brasil. O frete é por conta do comprador. Para o Rio de Janeiro, a entrega pode ser feita diretamente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "As peças podem ser usadas em área externa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As peças são indicadas para uso em interiores com apoio leve. Para uso externo coberto, consulte-nos via WhatsApp para discutir opções adequadas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual o preço das peças?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Os preços começam em R$1.499 para o Cubo P e variam conforme tipo e tamanho: Cubos a partir de R$1.499, Cachepôs a partir de R$1.590, Bancos a partir de R$2.699, Coffee Tables a partir de R$2.949, Buffets a partir de R$3.199 e Desks a partir de R$5.390."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Cubo - Mesa lateral em azulejo artesanal",
+    "description": "Mesa lateral e plinto revestido em azulejo esmaltado 4,7×4,7 cm, feito à mão no Rio de Janeiro. Disponível nos tamanhos P (35×37×37 cm), M (52×37×37 cm) e G (92×37×37 cm).",
+    "image": "https://studiolado.com/images/lado-studio-concrete-cube-planter.jpeg",
+    "brand": {"@type": "Brand", "name": "Lado Studio"},
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "1499",
+      "highPrice": "1899",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/MadeToOrder"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Cachepô - Vaso em azulejo artesanal",
+    "description": "Cachepô revestido em azulejo esmaltado 4,7×4,7 cm, feito à mão no Rio de Janeiro. Disponível nos tamanhos S (40 cm), M (50 cm) e L (60 cm).",
+    "image": "https://studiolado.com/images/lado-studio-cachepo-flower-plant-pot.jpeg",
+    "brand": {"@type": "Brand", "name": "Lado Studio"},
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "1590",
+      "highPrice": "2090",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/MadeToOrder"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Banco - Banco em azulejo artesanal",
+    "description": "Banco revestido em azulejo esmaltado 4,7×4,7 cm, feito à mão no Rio de Janeiro. Disponível nos tamanhos P (35×100×32 cm) e M (43×124×32 cm).",
+    "image": "https://studiolado.com/images/product-5.jpg",
+    "brand": {"@type": "Brand", "name": "Lado Studio"},
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "2699",
+      "highPrice": "3199",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/MadeToOrder"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Coffee Table - Mesa de centro em azulejo artesanal",
+    "description": "Mesa de centro revestida em azulejo esmaltado 4,7×4,7 cm, feita à mão no Rio de Janeiro. Tamanho M (42×93×58 cm).",
+    "image": "https://studiolado.com/images/lado-studio-concrete-coffee-table.jpeg",
+    "brand": {"@type": "Brand", "name": "Lado Studio"},
+    "offers": {
+      "@type": "Offer",
+      "price": "2949",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/MadeToOrder"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Buffet - Console em azulejo artesanal",
+    "description": "Buffet revestido em azulejo esmaltado 4,7×4,7 cm, feito à mão no Rio de Janeiro. Disponível nos tamanhos M (92×99×32 cm) e G (110×120×32 cm).",
+    "image": "https://studiolado.com/images/lado-studio-concrete-buffet.jpg",
+    "brand": {"@type": "Brand", "name": "Lado Studio"},
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "3199",
+      "highPrice": "3990",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/MadeToOrder"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Desk - Escrivaninha em azulejo artesanal",
+    "description": "Desk revestida em azulejo esmaltado 4,7×4,7 cm, feita à mão no Rio de Janeiro. Disponível nos tamanhos M (78×124×63 cm) e G (85×150×63 cm).",
+    "image": "https://studiolado.com/images/lado-studio-concrete-desk.jpg",
+    "brand": {"@type": "Brand", "name": "Lado Studio"},
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "5390",
+      "highPrice": "7290",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/MadeToOrder"
+    }
+  }
+]
 </script>
 </head>
 <body>
@@ -1018,6 +1200,48 @@ button:focus-visible,a:focus-visible,.colour-opt input:focus-visible + .colour-s
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Falar no WhatsApp
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section id="faq">
+  <div class="faq-header reveal">
+    <div class="faq-hed">Perguntas<br>frequentes.</div>
+    <div class="faq-sub">Tudo que você precisa saber antes de encomendar.</div>
+  </div>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <button class="faq-question">Qual o prazo de entrega?<span class="faq-icon">+</span></button>
+      <div class="faq-answer"><p>O prazo padrão de produção é de 3 a 4 semanas a partir da confirmação do sinal de 50%. A entrega pode ser feita no Rio de Janeiro ou enviada para todo o Brasil, com frete por conta do comprador.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">De que material são feitas as peças?<span class="faq-icon">+</span></button>
+      <div class="faq-answer"><p>As peças são feitas em concreto revestido com azulejo esmaltado artesanal de 4,7×4,7 cm. O acabamento é brilhante, resistente a manchas e fácil de limpar. Indicado para uso em interiores.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Posso escolher a cor do azulejo e do rejunte?<span class="faq-icon">+</span></button>
+      <div class="faq-answer"><p>Sim. Oferecemos 12 cores de azulejo (Sky, Azul Médio, Naval, Brasa, Rubi, Olive, Butter, Marfim, Beaufort, Caju, Preto e Limoncello) e 12 opções de rejunte. Cada combinação gera um resultado visual único.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Quais peças vocês produzem?<span class="faq-icon">+</span></button>
+      <div class="faq-answer"><p>Produzimos cubos (mesa lateral/plinto), cachepôs, bancos, coffee tables, buffets e desks. Todos sob encomenda, em diferentes tamanhos. Peças personalizadas também podem ser discutidas.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Como funciona o processo de encomenda?<span class="faq-icon">+</span></button>
+      <div class="faq-answer"><p>O processo tem 4 etapas: (1) conversa via WhatsApp sobre o espaço e preferências, (2) proposta formal com valor e prazo, (3) sinal de 50% para iniciar a produção, e (4) saldo antes do envio com foto da peça finalizada para aprovação.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Vocês entregam fora do Rio de Janeiro?<span class="faq-icon">+</span></button>
+      <div class="faq-answer"><p>Sim, enviamos para todo o Brasil. O frete é por conta do comprador. Para o Rio de Janeiro, a entrega pode ser feita diretamente.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">As peças podem ser usadas em área externa?<span class="faq-icon">+</span></button>
+      <div class="faq-answer"><p>As peças são indicadas para uso em interiores com apoio leve. Para uso externo coberto, consulte-nos via WhatsApp para discutir opções adequadas.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Qual o preço das peças?<span class="faq-icon">+</span></button>
+      <div class="faq-answer"><p>Os preços começam em R$1.499 para o Cubo P e variam conforme tipo e tamanho: Cubos a partir de R$1.499, Cachepôs a partir de R$1.590, Bancos a partir de R$2.699, Coffee Tables a partir de R$2.949, Buffets a partir de R$3.199 e Desks a partir de R$5.390.</p></div>
     </div>
   </div>
 </section>
@@ -1638,6 +1862,26 @@ if(window.matchMedia('(pointer: fine)').matches && cursor) {
     else cursor.classList.remove('big');
   });
 }
+
+// ── FAQ accordion ──
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const item = this.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-answer').style.maxHeight = null;
+    });
+    // Open clicked (if it was closed)
+    if(!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      gtag('event', 'faq_open', { question: this.textContent.replace('+','').trim() });
+    }
+  });
+});
 
 // ── Debounced mousemove with rAF ──
 
