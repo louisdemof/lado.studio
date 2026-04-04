@@ -1133,6 +1133,21 @@ const observer = new IntersectionObserver(entries => {
 }, {threshold:0});
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ── GA4 section-view tracking ──
+let _trackedSections = {};
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting && !_trackedSections[e.target.id]) {
+      _trackedSections[e.target.id] = true;
+      gtag('event', 'section_view', { section: e.target.id });
+    }
+  });
+}, {threshold:0.3});
+['configurator','products','gallery','process','tiles','story','cta'].forEach(id => {
+  const el = document.getElementById(id);
+  if(el) sectionObserver.observe(el);
+});
+
 
 
 // ══════════════════════════════════════════
@@ -1483,6 +1498,7 @@ document.querySelectorAll('.pi-customise[data-product-type]').forEach(link => {
   link.addEventListener('click', function(e) {
     e.stopPropagation();
     const type = this.dataset.productType;
+    gtag('event', 'personalizar_click', { product_type: type });
     const btn = document.querySelector(`[data-type="${type}"]`);
     if (btn) btn.click();
   });
@@ -1495,6 +1511,7 @@ document.querySelectorAll('[data-type]').forEach(btn => {
     state.typeName = this.dataset.typename;
     document.querySelectorAll('[data-type]').forEach(b => b.classList.remove('active'));
     this.classList.add('active');
+    gtag('event', 'config_type', { product_type: state.type });
     updateSizeButtons();
     updatePreview();
   });
@@ -1507,6 +1524,7 @@ document.querySelectorAll('[data-size]').forEach(btn => {
     state.size = this.dataset.size;
     document.querySelectorAll('[data-size]').forEach(b => b.classList.remove('active'));
     this.classList.add('active');
+    gtag('event', 'config_size', { size: state.size, product_type: state.type });
     updatePreview();
   });
 });
@@ -1517,6 +1535,7 @@ document.querySelectorAll('[data-colour]').forEach(inp => {
     state.colour    = this.dataset.colour;
     state.colourHex = this.dataset.hex;
     state.colourDark= this.dataset.dark === 'true';
+    gtag('event', 'config_colour', { colour: state.colour, product_type: state.type });
     updatePreview();
   });
 });
@@ -1528,6 +1547,7 @@ document.querySelectorAll('[data-grout]').forEach(btn => {
     state.groutHex = this.dataset.grouthex;
     document.querySelectorAll('[data-grout]').forEach(b => b.classList.remove('active'));
     this.classList.add('active');
+    gtag('event', 'config_grout', { grout: state.grout, product_type: state.type });
     updatePreview();
   });
 });
@@ -1539,6 +1559,7 @@ if(configCta) configCta.addEventListener('click', function() {
   const price = (prices[state.type] && prices[state.type][state.size]) || 1699;
   const dim   = (dims[state.type]   && dims[state.type][state.size])   || '';
   const msg   = encodeURIComponent(`Olá! Vim do site do Lado Studio e quero encomendar:\n\nPeça: ${state.typeName}\nSKU: ${sku}\nDimensões: ${dim}\nCor: ${state.colour}\nRejunte: ${state.grout}\nPreço base: R$${price.toLocaleString('pt-BR')}\n\nPode me dar mais informações?`);
+  gtag('event', 'whatsapp_lead', { sku: sku, product_type: state.typeName, colour: state.colour, grout: state.grout, size: state.size, price: price });
   window.open(`https://wa.me/5521972240493?text=${msg}`, '_blank');
   showToast('Abrindo WhatsApp...');
 });
